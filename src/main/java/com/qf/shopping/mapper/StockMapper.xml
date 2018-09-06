@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.shopping.mapper.StockMapper" >
+  <resultMap id="BaseResultMap" type="com.qf.shopping.pojo.Stock" >
+    <id column="stockId" property="stockId" jdbcType="INTEGER" />
+    <result column="goodId" property="goodId" jdbcType="INTEGER" />
+    <result column="goodStockNum" property="goodStockNum" jdbcType="INTEGER" />
+    <result column="goodLockNum" property="goodLockNum" jdbcType="INTEGER" />
+    <result column="goodWarnNum" property="goodWarnNum" jdbcType="INTEGER" />
+    <result column="_version" property="_version" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    stockId, goodId, goodStockNum, goodLockNum, goodWarnNum, _version, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.shopping.pojo.StockExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_stock
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_stock
+    where stockId = #{stockId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_stock
+    where stockId = #{stockId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qf.shopping.pojo.StockExample" >
+    delete from t_stock
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qf.shopping.pojo.Stock" >
+    insert into t_stock (stockId, goodId, goodStockNum, 
+      goodLockNum, goodWarnNum, _version, 
+      remark)
+    values (#{stockId,jdbcType=INTEGER}, #{goodId,jdbcType=INTEGER}, #{goodStockNum,jdbcType=INTEGER}, 
+      #{goodLockNum,jdbcType=INTEGER}, #{goodWarnNum,jdbcType=INTEGER}, #{_version,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qf.shopping.pojo.Stock" >
+    insert into t_stock
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stockId != null" >
+        stockId,
+      </if>
+      <if test="goodId != null" >
+        goodId,
+      </if>
+      <if test="goodStockNum != null" >
+        goodStockNum,
+      </if>
+      <if test="goodLockNum != null" >
+        goodLockNum,
+      </if>
+      <if test="goodWarnNum != null" >
+        goodWarnNum,
+      </if>
+      <if test="_version != null" >
+        _version,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stockId != null" >
+        #{stockId,jdbcType=INTEGER},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="goodStockNum != null" >
+        #{goodStockNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodLockNum != null" >
+        #{goodLockNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodWarnNum != null" >
+        #{goodWarnNum,jdbcType=INTEGER},
+      </if>
+      <if test="_version != null" >
+        #{_version,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qf.shopping.pojo.StockExample" resultType="java.lang.Integer" >
+    select count(*) from t_stock
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_stock
+    <set >
+      <if test="record.stockId != null" >
+        stockId = #{record.stockId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodId != null" >
+        goodId = #{record.goodId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodStockNum != null" >
+        goodStockNum = #{record.goodStockNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodLockNum != null" >
+        goodLockNum = #{record.goodLockNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodWarnNum != null" >
+        goodWarnNum = #{record.goodWarnNum,jdbcType=INTEGER},
+      </if>
+      <if test="record._version != null" >
+        _version = #{record._version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_stock
+    set stockId = #{record.stockId,jdbcType=INTEGER},
+      goodId = #{record.goodId,jdbcType=INTEGER},
+      goodStockNum = #{record.goodStockNum,jdbcType=INTEGER},
+      goodLockNum = #{record.goodLockNum,jdbcType=INTEGER},
+      goodWarnNum = #{record.goodWarnNum,jdbcType=INTEGER},
+      _version = #{record._version,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.shopping.pojo.Stock" >
+    update t_stock
+    <set >
+      <if test="goodId != null" >
+        goodId = #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="goodStockNum != null" >
+        goodStockNum = #{goodStockNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodLockNum != null" >
+        goodLockNum = #{goodLockNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodWarnNum != null" >
+        goodWarnNum = #{goodWarnNum,jdbcType=INTEGER},
+      </if>
+      <if test="_version != null" >
+        _version = #{_version,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where stockId = #{stockId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.shopping.pojo.Stock" >
+    update t_stock
+    set goodId = #{goodId,jdbcType=INTEGER},
+      goodStockNum = #{goodStockNum,jdbcType=INTEGER},
+      goodLockNum = #{goodLockNum,jdbcType=INTEGER},
+      goodWarnNum = #{goodWarnNum,jdbcType=INTEGER},
+      _version = #{_version,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where stockId = #{stockId,jdbcType=INTEGER}
+  </update>
+</mapper>

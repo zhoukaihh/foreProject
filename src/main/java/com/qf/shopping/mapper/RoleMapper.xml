@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.shopping.mapper.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.qf.shopping.pojo.Role" >
+    <id column="rId" property="rId" jdbcType="INTEGER" />
+    <result column="rName" property="rName" jdbcType="VARCHAR" />
+    <result column="rDes" property="rDes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rId, rName, rDes
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.shopping.pojo.RoleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_role
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_role
+    where rId = #{rId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_role
+    where rId = #{rId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qf.shopping.pojo.RoleExample" >
+    delete from t_role
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qf.shopping.pojo.Role" >
+    insert into t_role (rName, rDes
+      )
+    values (#{rName,jdbcType=VARCHAR}, #{rDes,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qf.shopping.pojo.Role" >
+    insert into t_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rId != null" >
+        rId,
+      </if>
+      <if test="rName != null" >
+        rName,
+      </if>
+      <if test="rDes != null" >
+        rDes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rId != null" >
+        #{rId,jdbcType=INTEGER},
+      </if>
+      <if test="rName != null" >
+        #{rName,jdbcType=VARCHAR},
+      </if>
+      <if test="rDes != null" >
+        #{rDes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qf.shopping.pojo.RoleExample" resultType="java.lang.Integer" >
+    select count(*) from t_role
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_role
+    <set >
+      <if test="record.rId != null" >
+        rId = #{record.rId,jdbcType=INTEGER},
+      </if>
+      <if test="record.rName != null" >
+        rName = #{record.rName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rDes != null" >
+        rDes = #{record.rDes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_role
+    set rId = #{record.rId,jdbcType=INTEGER},
+      rName = #{record.rName,jdbcType=VARCHAR},
+      rDes = #{record.rDes,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.shopping.pojo.Role" >
+    update t_role
+    <set >
+      <if test="rName != null" >
+        rName = #{rName,jdbcType=VARCHAR},
+      </if>
+      <if test="rDes != null" >
+        rDes = #{rDes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rId = #{rId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.shopping.pojo.Role" >
+    update t_role
+    set rName = #{rName,jdbcType=VARCHAR},
+      rDes = #{rDes,jdbcType=VARCHAR}
+    where rId = #{rId,jdbcType=INTEGER}
+  </update>
+</mapper>

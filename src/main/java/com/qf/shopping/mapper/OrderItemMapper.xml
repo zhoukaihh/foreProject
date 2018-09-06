@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.shopping.mapper.OrderItemMapper" >
+  <resultMap id="BaseResultMap" type="com.qf.shopping.pojo.OrderItem" >
+    <id column="orderItemId" property="orderItemId" jdbcType="INTEGER" />
+    <result column="goodId" property="goodId" jdbcType="INTEGER" />
+    <result column="goodName" property="goodName" jdbcType="VARCHAR" />
+    <result column="goodDes" property="goodDes" jdbcType="VARCHAR" />
+    <result column="goodNums" property="goodNums" jdbcType="VARCHAR" />
+    <result column="goodPrice" property="goodPrice" jdbcType="VARCHAR" />
+    <result column="goodImage" property="goodImage" jdbcType="VARCHAR" />
+    <result column="buyNum" property="buyNum" jdbcType="INTEGER" />
+    <result column="itemTotal" property="itemTotal" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    orderItemId, goodId, goodName, goodDes, goodNums, goodPrice, goodImage, buyNum, itemTotal
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.shopping.pojo.OrderItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_orderitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_orderitem
+    where orderItemId = #{orderItemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_orderitem
+    where orderItemId = #{orderItemId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qf.shopping.pojo.OrderItemExample" >
+    delete from t_orderitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qf.shopping.pojo.OrderItem" >
+    insert into t_orderitem (orderItemId, goodId, goodName, 
+      goodDes, goodNums, goodPrice, 
+      goodImage, buyNum, itemTotal
+      )
+    values (#{orderItemId,jdbcType=INTEGER}, #{goodId,jdbcType=INTEGER}, #{goodName,jdbcType=VARCHAR}, 
+      #{goodDes,jdbcType=VARCHAR}, #{goodNums,jdbcType=VARCHAR}, #{goodPrice,jdbcType=VARCHAR}, 
+      #{goodImage,jdbcType=VARCHAR}, #{buyNum,jdbcType=INTEGER}, #{itemTotal,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qf.shopping.pojo.OrderItem" >
+    insert into t_orderitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderItemId != null" >
+        orderItemId,
+      </if>
+      <if test="goodId != null" >
+        goodId,
+      </if>
+      <if test="goodName != null" >
+        goodName,
+      </if>
+      <if test="goodDes != null" >
+        goodDes,
+      </if>
+      <if test="goodNums != null" >
+        goodNums,
+      </if>
+      <if test="goodPrice != null" >
+        goodPrice,
+      </if>
+      <if test="goodImage != null" >
+        goodImage,
+      </if>
+      <if test="buyNum != null" >
+        buyNum,
+      </if>
+      <if test="itemTotal != null" >
+        itemTotal,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderItemId != null" >
+        #{orderItemId,jdbcType=INTEGER},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="goodName != null" >
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodDes != null" >
+        #{goodDes,jdbcType=VARCHAR},
+      </if>
+      <if test="goodNums != null" >
+        #{goodNums,jdbcType=VARCHAR},
+      </if>
+      <if test="goodPrice != null" >
+        #{goodPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="goodImage != null" >
+        #{goodImage,jdbcType=VARCHAR},
+      </if>
+      <if test="buyNum != null" >
+        #{buyNum,jdbcType=INTEGER},
+      </if>
+      <if test="itemTotal != null" >
+        #{itemTotal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qf.shopping.pojo.OrderItemExample" resultType="java.lang.Integer" >
+    select count(*) from t_orderitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_orderitem
+    <set >
+      <if test="record.orderItemId != null" >
+        orderItemId = #{record.orderItemId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodId != null" >
+        goodId = #{record.goodId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodName != null" >
+        goodName = #{record.goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodDes != null" >
+        goodDes = #{record.goodDes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodNums != null" >
+        goodNums = #{record.goodNums,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodPrice != null" >
+        goodPrice = #{record.goodPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodImage != null" >
+        goodImage = #{record.goodImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyNum != null" >
+        buyNum = #{record.buyNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemTotal != null" >
+        itemTotal = #{record.itemTotal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_orderitem
+    set orderItemId = #{record.orderItemId,jdbcType=INTEGER},
+      goodId = #{record.goodId,jdbcType=INTEGER},
+      goodName = #{record.goodName,jdbcType=VARCHAR},
+      goodDes = #{record.goodDes,jdbcType=VARCHAR},
+      goodNums = #{record.goodNums,jdbcType=VARCHAR},
+      goodPrice = #{record.goodPrice,jdbcType=VARCHAR},
+      goodImage = #{record.goodImage,jdbcType=VARCHAR},
+      buyNum = #{record.buyNum,jdbcType=INTEGER},
+      itemTotal = #{record.itemTotal,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.shopping.pojo.OrderItem" >
+    update t_orderitem
+    <set >
+      <if test="goodId != null" >
+        goodId = #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="goodName != null" >
+        goodName = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodDes != null" >
+        goodDes = #{goodDes,jdbcType=VARCHAR},
+      </if>
+      <if test="goodNums != null" >
+        goodNums = #{goodNums,jdbcType=VARCHAR},
+      </if>
+      <if test="goodPrice != null" >
+        goodPrice = #{goodPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="goodImage != null" >
+        goodImage = #{goodImage,jdbcType=VARCHAR},
+      </if>
+      <if test="buyNum != null" >
+        buyNum = #{buyNum,jdbcType=INTEGER},
+      </if>
+      <if test="itemTotal != null" >
+        itemTotal = #{itemTotal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderItemId = #{orderItemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.shopping.pojo.OrderItem" >
+    update t_orderitem
+    set goodId = #{goodId,jdbcType=INTEGER},
+      goodName = #{goodName,jdbcType=VARCHAR},
+      goodDes = #{goodDes,jdbcType=VARCHAR},
+      goodNums = #{goodNums,jdbcType=VARCHAR},
+      goodPrice = #{goodPrice,jdbcType=VARCHAR},
+      goodImage = #{goodImage,jdbcType=VARCHAR},
+      buyNum = #{buyNum,jdbcType=INTEGER},
+      itemTotal = #{itemTotal,jdbcType=VARCHAR}
+    where orderItemId = #{orderItemId,jdbcType=INTEGER}
+  </update>
+</mapper>

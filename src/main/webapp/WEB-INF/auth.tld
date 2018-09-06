@@ -1,0 +1,54 @@
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+    http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+	version="2.1">
+     <!-- 当前标签库的描述，严格意义上可以随便写 -->
+     <description>this is auth tag</description>
+	 <!-- 当前标签库的一个名字，这个名字严格意义上也可以随便写 -->
+     <display-name>auth tag</display-name>
+     <!-- 当前标签库的一个版本 默认写1.0就好 -->
+     <tlib-version>1.0</tlib-version>
+     <!-- 当前标签库的引用的缩写 -->
+     <short-name>auth</short-name>
+     <!-- 当前标签库上的引用的路径，除了http://之外后面的路径还是可以随便写，因为放本地，所以这个路径是可以随便写的 -->
+     <uri>http://www.auth.com</uri>
+     
+     <!-- 申明标签 -->
+    <!-- 描述我们的标签了 一个tag是一个标签，而一个标签库中可以有多个标签-->
+    <tag>
+      <!-- tag是标签的主体呢内容，其中需要参数时，一个参数对应一个attribute -->
+      <description>this is bIf tag</description>
+      <!-- 这个就是当前标签的名字 -->
+      <name>hasRole</name> 
+       <!-- 当前标签的处理类 也就是说我们的标签实际上是有专门的JAVA处理类的 -->
+       <tag-class>com.qf.shopping.tag.HasRoleTag</tag-class>
+       <!-- 当前的标签里面是否可以输入内容， 自定义标签的话记住这一个就好-->
+       <body-content>scriptless</body-content>
+       
+       <!-- 定义标签上的属性 -->
+       <attribute>
+            <description>这里是属性上的描述随便写</description>
+             <!-- 属性的名字 -->
+             <name>role</name>
+             <!-- 该属性是否必须写 -->
+             <required>true</required>
+             <!-- 是否可以用el表达式 -->
+             <rtexprvalue>true</rtexprvalue>   
+       </attribute>
+       
+        <attribute>
+            <description>这里是属性上的描述随便写</description>
+             <!-- 属性的名字 -->
+             <name>token</name>
+             <!-- 该属性是否必须写 -->
+             <required>true</required>
+             <!-- 是否可以用el表达式 -->
+             <rtexprvalue>true</rtexprvalue>   
+       </attribute>
+       
+    </tag>
+    
+    
+    
+    
+</taglib>

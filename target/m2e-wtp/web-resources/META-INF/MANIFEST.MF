@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: Day1802_SpringBoot_Spring_SpringMVC_ibatis
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Administrator
+Implementation-Vendor-Id: com.qf.springboot
+Build-Jdk: 1.8.0_91
+Implementation-URL: http://projects.spring.io/spring-boot/Day1802_Spri
+ ngBoot_Spring_SpringMVC_ibatis/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
