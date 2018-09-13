@@ -2,7 +2,6 @@ package com.qf.shopping.pojo;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class AdvertismentExample {
@@ -104,32 +103,6 @@ public class AdvertismentExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value.getTime()), property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
-            if (values == null || values.size() == 0) {
-                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
-            }
-            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
-            Iterator<Date> iter = values.iterator();
-            while (iter.hasNext()) {
-                dateList.add(new java.sql.Date(iter.next().getTime()));
-            }
-            addCriterion(condition, dateList, property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andAdIdIsNull() {
@@ -413,52 +386,52 @@ public class AdvertismentExample {
         }
 
         public Criteria andAdStartTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("adStartTime =", value, "adStartTime");
+            addCriterion("adStartTime =", value, "adStartTime");
             return (Criteria) this;
         }
 
         public Criteria andAdStartTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("adStartTime <>", value, "adStartTime");
+            addCriterion("adStartTime <>", value, "adStartTime");
             return (Criteria) this;
         }
 
         public Criteria andAdStartTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("adStartTime >", value, "adStartTime");
+            addCriterion("adStartTime >", value, "adStartTime");
             return (Criteria) this;
         }
 
         public Criteria andAdStartTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("adStartTime >=", value, "adStartTime");
+            addCriterion("adStartTime >=", value, "adStartTime");
             return (Criteria) this;
         }
 
         public Criteria andAdStartTimeLessThan(Date value) {
-            addCriterionForJDBCDate("adStartTime <", value, "adStartTime");
+            addCriterion("adStartTime <", value, "adStartTime");
             return (Criteria) this;
         }
 
         public Criteria andAdStartTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("adStartTime <=", value, "adStartTime");
+            addCriterion("adStartTime <=", value, "adStartTime");
             return (Criteria) this;
         }
 
         public Criteria andAdStartTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("adStartTime in", values, "adStartTime");
+            addCriterion("adStartTime in", values, "adStartTime");
             return (Criteria) this;
         }
 
         public Criteria andAdStartTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("adStartTime not in", values, "adStartTime");
+            addCriterion("adStartTime not in", values, "adStartTime");
             return (Criteria) this;
         }
 
         public Criteria andAdStartTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("adStartTime between", value1, value2, "adStartTime");
+            addCriterion("adStartTime between", value1, value2, "adStartTime");
             return (Criteria) this;
         }
 
         public Criteria andAdStartTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("adStartTime not between", value1, value2, "adStartTime");
+            addCriterion("adStartTime not between", value1, value2, "adStartTime");
             return (Criteria) this;
         }
     }

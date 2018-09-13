@@ -1,0 +1,320 @@
+*{
+    -webkit-tap-highlight-color: rgba(0,0,0,.3);
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+   outline: 0;
+   text-decoration: none;
+}
+div {
+    display: block;
+}
+body, button, input, select, textarea {
+    font: 12px/1.5 tahoma,arial,"\5b8b\4f53";
+    -ms-overflow-style: scrollbar;
+}
+.font{
+	color: #999;
+    FONT-SIZE: small;
+}
+.am-icon-fw {
+    width: 1.25em;
+    text-align: center;
+    color: #FF0036;
+}
+#titlefather {
+    width: auto;
+    height: 26px;
+    position: relative!important;
+    background: #f2f2f2;
+    z-index: 99999;
+    -webkit-transform: translate3d(0,0,0);
+   /*  border-bottom: 1px solid #e5e5e5; */
+}
+.page {
+    background: #fff;
+    min-width: 990px;
+}
+#headSearchFather{
+
+    width: auto;
+    height: 94px;
+  /*   border: 1px solid blue; */
+    
+}
+#headSearch{
+    position: relative;
+	top:0px;
+	left:89px;
+    width: 1190px;
+    height: 92px;
+}
+#searchBeforeLogo{
+	position: relative;
+	top:-16px;
+	left:0px;
+	width:222px;
+	height: 90px;
+	/* border: 1px solid #FF0036; */
+	font-size: 30px;
+	text-align: center;
+	font-weight: 500;
+	color: #FF002E;
+	font-family:sans-serif;
+	
+}
+#search{
+	position: relative;
+	top:28px;
+	left:322px;
+	width:450px;
+	height: 42px;
+	border: 2px solid #FF0036;
+}
+
+#searchInfo{
+	width:100%;
+	height: 38px;
+	border: 1px solid #FF0036;
+}
+#searchSubmit{
+	position: relative;
+	top:-40px;
+	left:448px;
+	width:90px;
+	height: 42px;
+	border: 2px solid #FF0036;
+	background-color: #FF0036;
+	color: white;
+}
+#sthOthers{
+	position: relative;
+	top:0px;
+	left:89px;
+    width: 1190px;
+    height: 92px;
+    border: 2px solid black;
+}
+#showGoodFather{
+	position: relative;
+	top:0px;
+	left:84px;
+    width: 1225px;
+    
+    /*  border: 1px solid red; */
+}
+.goodBorder{
+	position: relative;
+    float: left;
+    padding: 0;
+    width
+    line-height: 1.5;
+    overflow: visible;
+    z-index: 1;
+    border:4px solid white; 
+    margin-right: 20px;
+	margin-top: 20px;
+
+  
+}
+
+.oneGood{
+	float: left;
+	width: 213px;
+	height:332px;
+	line-height: 1.5; 
+	 border: 1px solid #f5f5f5;
+    background-color: #fff;
+    padding: 4px 4px 0;
+    border-radius: 3px;
+	
+}
+.goodPicture{
+	 width: 210px;
+	height: 210px; 
+}
+.gPhotoShow{
+	margin: 0 0;
+    width: 205px;
+    height: 210px;
+    /* border: 1px solid red; */
+    
+}
+.goodPrice{
+	font-family: arial,verdana,sans-serif!important;
+    color: #ff0036;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 0 5px;
+    letter-spacing: normal;
+    overflow: inherit!important;
+    white-space: nowrap;
+   /*  border: 1px solid red; */
+}
+.goodPrice em{
+    float: left;
+    font-family: arial;
+    font-weight: 400;
+    font-size: 20px;
+    color: #ff0036;
+}	
+.goodPrice em b {
+    margin-right: 2px;
+    font-weight: 700;
+    font-size: 14px;
+}	
+.goodTitle {
+    display: block;
+    color: #666;
+    height: 14px;
+    line-height: 12px;
+    margin-bottom: 3px;
+    word-break: break-all;
+    font-size: 0;
+    position: relative;
+}
+.goodTitle a:visited {
+    color: #551A8B!important;
+}	
+.goodTitle a {
+    color: #333;
+}
+.goodTitle * {
+    font-size: 12px;
+    font-family: \5FAE\8F6F\96C5\9ED1;
+    line-height: 14px;
+}
+.goodDes{
+	position: relative;
+    height: 22px;
+    line-height: 20px;
+    margin-bottom: 5px;
+    color: #999;
+    white-space: nowrap;
+    overflow: visible;
+}
+.goodSaleInfo{
+	position: relative;
+    height: 32px;
+    font-size: 12px;
+    border: none;
+    border-top: 1px solid #eee;
+    margin-bottom: 0;
+    color: #999;
+}
+.goodSaleInfo span{
+    float: left;
+    display: inline-block;
+    border-right: 1px solid #eee;
+    width: 39%;
+    padding: 10px 1px;
+    margin-right: 6px;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+}
+.goodSaleInfo em{
+    margin-top: -8px;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: 700;
+    color: #b57c5b;
+}
+.goodSaleInfo a{
+	margin-top: -8px;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: 700;
+    color: #38b
+}
+#pageDiv{
+	float: left;
+	width:1225px;
+    height: 60px;
+    margin: 10px 0 20px;
+    color: #999;
+    text-align: center;
+	font-size: 14px;
+    font-weight: 700;
+  /*   border: 1px solid red; */
+}
+
+#choiceJump{
+	width: auto;
+	height: 59px;
+	
+	 /* border: 1px solid red; */
+	display: inline-block;
+    zoom: 1;
+}
+#pageNum{
+	 float:left;
+	/* //width: auto; */
+	height: 38px;
+	/*  border: 1px solid red; */
+	 padding-top: 72px;
+	 background: url("/shopping/images/ddoggie.jpg") right 0 no-repeat;
+	 
+	font-weight: 400;
+}
+#pageSkip{
+	float:left;
+	margin-top: 75px;
+    padding: 10px 0 0 10px;
+    width: 206px;
+    height: 26px;
+ /*    border: 1px solid red; */
+    position: relative;
+    top: -3px;
+    left:0px;
+	
+}
+.goPageNoInput{
+    width: 32px;
+    height: 18px;
+    margin: -2px 2px 0;
+    line-height: 20px;
+    font-size: 16px;
+    color: #999;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+}
+.myButton{
+	width: 45px;
+	height: 22px;
+}
+#pageNum a, #pageNum b {
+    float: left;
+}
+#pageNum a {
+    background-color: #fff;
+    color: #2953A6;
+    cursor: pointer;
+    text-decoration: none;
+}
+#pageNum b {
+    font-weight: 400;
+}
+.goPagePrev {
+    border-left: 1px solid #E5E5E5!important;
+}
+#pageNum a, .nowPage, .goPageNext, .goPagePrev {
+    border: 1px solid #E5E5E5;
+    border-left: 0;
+}
+.goPageNext, .goPagePrev, a.goPageNext, a.goPagePrev {
+    padding: 12px 10px 0;
+}
+#pageNum a, .nowPage, .goPageNext, .goPagePrev, #pageSkip {
+    height: 40px;
+    width: auto;
+    padding: 12px 14px 0;
+}
+#pageNum b{
+	background-color: #EFEFEF;
+}

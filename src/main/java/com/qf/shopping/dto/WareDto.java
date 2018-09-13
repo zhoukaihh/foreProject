@@ -20,15 +20,99 @@ public class WareDto {
 
     private String goodImage;
 
-    private String goodDiscount;
+    private String goodwNum;
 
     private String goodPrice;
     
     private Integer secondTypeId;
     
+    private Integer gms;
+
+    private Integer gams;
+
+    private Integer gnum;
+
+    private Integer glNum;
+
+    private Integer gewNum;
+
+    private Integer version;
+    
     private SecondType secondType;
 
-    
+    public WareDto() {
+	}
+	
+	public WareDto(Ware g){
+		
+		this.goodId=g.getGoodId();
+		this.goodDes=g.getGoodDes();
+		this.goodwNum=g.getGoodwNum();
+		this.goodDiscountPrice=g.getGoodDiscountPrice();
+		this.goodImage=g.getGoodImage();
+		this.goodName=g.getGoodName();
+		this.goodNums=g.getGoodNums();
+		this.goodPrice=g.getGoodPrice();
+		this.secondTypeId=g.getSecondTypeId();
+		this.gams=g.getGams();
+		this.gewNum=g.getGewNum();
+		this.glNum=g.getGlNum();
+		this.gms=g.getGms();
+		this.gnum=g.getGnum();
+		this.version=g.getVersion();
+		this.secondType=g.getSecondType();
+	}
+
+	
+	
+	public Integer getGnum() {
+		return gnum;
+	}
+
+	public void setGnum(Integer gnum) {
+		this.gnum = gnum;
+	}
+
+	public Integer getGlNum() {
+		return glNum;
+	}
+
+	public void setGlNum(Integer glNum) {
+		this.glNum = glNum;
+	}
+
+	public Integer getGms() {
+		return gms;
+	}
+
+	public void setGms(Integer gms) {
+		this.gms = gms;
+	}
+
+	public Integer getGams() {
+		return gams;
+	}
+
+	public void setGams(Integer gams) {
+		this.gams = gams;
+	}
+
+
+	public Integer getGewNum() {
+		return gewNum;
+	}
+
+	public void setGewNum(Integer gewNum) {
+		this.gewNum = gewNum;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
 
 	public Integer getSecondTypeId() {
 		return secondTypeId;
@@ -46,23 +130,7 @@ public class WareDto {
 		this.secondType = secondType;
 	}
 
-	public WareDto() {
-	}
 	
-	public WareDto(Ware g){
-		
-		this.goodId=g.getGoodId();
-		this.goodDes=g.getGoodDes();
-		this.goodDiscount=g.getGoodDiscount();
-		this.goodDiscountPrice=g.getGoodDiscountPrice();
-		this.goodImage=g.getGoodImage();
-		this.goodName=g.getGoodName();
-		this.goodNums=g.getGoodNums();
-		this.goodPrice=g.getGoodPrice();
-		this.secondTypeId=g.getSecondTypeId();
-		this.secondType=g.getSecondType();
-	}
-
 	public Integer getGoodId() {
 		return goodId;
 	}
@@ -111,12 +179,12 @@ public class WareDto {
 		this.goodImage = goodImage;
 	}
 
-	public String getGoodDiscount() {
-		return goodDiscount;
+	public String getGoodwNum() {
+		return goodwNum;
 	}
 
-	public void setGoodDiscount(String goodDiscount) {
-		this.goodDiscount = goodDiscount;
+	public void setGoodwNum(String goodwNum) {
+		this.goodwNum = goodwNum;
 	}
 
 	public String getGoodPrice() {

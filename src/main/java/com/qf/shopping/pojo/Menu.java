@@ -12,8 +12,19 @@ public class Menu {
     private String path;
 
     private String resName;
+    
+    private User user;
+    
 
-    public Integer getPerId() {
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Integer getPerId() {
         return perId;
     }
 

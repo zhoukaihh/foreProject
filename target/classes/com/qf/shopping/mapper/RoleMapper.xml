@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qf.shopping.mapper.RoleMapper" >
   <resultMap id="BaseResultMap" type="com.qf.shopping.pojo.Role" >
-    <id column="rId" property="rId" jdbcType="INTEGER" />
-    <result column="rName" property="rName" jdbcType="VARCHAR" />
-    <result column="rDes" property="rDes" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="des" property="des" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    rId, rName, rDes
+    id, name, des
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.shopping.pojo.RoleExample" >
     select
@@ -86,11 +86,11 @@
     select 
     <include refid="Base_Column_List" />
     from t_role
-    where rId = #{rId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_role
-    where rId = #{rId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.qf.shopping.pojo.RoleExample" >
     delete from t_role
@@ -98,34 +98,34 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.qf.shopping.pojo.Role" >
-    insert into t_role (rName, rDes
+  <insert id="insert" parameterType="com.qf.shopping.pojo.Role" useGeneratedKeys="true" keyProperty="id">
+    insert into t_role (id, name, des
       )
-    values (#{rName,jdbcType=VARCHAR}, #{rDes,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.qf.shopping.pojo.Role" >
+  <insert id="insertSelective" parameterType="com.qf.shopping.pojo.Role" useGeneratedKeys="true" keyProperty="id">
     insert into t_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="rId != null" >
-        rId,
+      <if test="id != null" >
+        id,
       </if>
-      <if test="rName != null" >
-        rName,
+      <if test="name != null" >
+        name,
       </if>
-      <if test="rDes != null" >
-        rDes,
+      <if test="des != null" >
+        des,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="rId != null" >
-        #{rId,jdbcType=INTEGER},
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="rName != null" >
-        #{rName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="rDes != null" >
-        #{rDes,jdbcType=VARCHAR},
+      <if test="des != null" >
+        #{des,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -138,14 +138,14 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update t_role
     <set >
-      <if test="record.rId != null" >
-        rId = #{record.rId,jdbcType=INTEGER},
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.rName != null" >
-        rName = #{record.rName,jdbcType=VARCHAR},
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.rDes != null" >
-        rDes = #{record.rDes,jdbcType=VARCHAR},
+      <if test="record.des != null" >
+        des = #{record.des,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -154,9 +154,9 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update t_role
-    set rId = #{record.rId,jdbcType=INTEGER},
-      rName = #{record.rName,jdbcType=VARCHAR},
-      rDes = #{record.rDes,jdbcType=VARCHAR}
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      des = #{record.des,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -164,19 +164,19 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.qf.shopping.pojo.Role" >
     update t_role
     <set >
-      <if test="rName != null" >
-        rName = #{rName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="rDes != null" >
-        rDes = #{rDes,jdbcType=VARCHAR},
+      <if test="des != null" >
+        des = #{des,jdbcType=VARCHAR},
       </if>
     </set>
-    where rId = #{rId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qf.shopping.pojo.Role" >
     update t_role
-    set rName = #{rName,jdbcType=VARCHAR},
-      rDes = #{rDes,jdbcType=VARCHAR}
-    where rId = #{rId,jdbcType=INTEGER}
+    set name = #{name,jdbcType=VARCHAR},
+      des = #{des,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

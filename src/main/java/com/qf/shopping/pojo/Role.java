@@ -1,33 +1,33 @@
 package com.qf.shopping.pojo;
 
 public class Role {
-    private Integer rId;
+    private Integer id;
 
-    private String rName;
+    private String name;
 
-    private String rDes;
+    private String des;
 
-    public Integer getrId() {
-        return rId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setrId(Integer rId) {
-        this.rId = rId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getrName() {
-        return rName;
+    public String getName() {
+        return name;
     }
 
-    public void setrName(String rName) {
-        this.rName = rName == null ? null : rName.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
-    public String getrDes() {
-        return rDes;
+    public String getDes() {
+        return des;
     }
 
-    public void setrDes(String rDes) {
-        this.rDes = rDes == null ? null : rDes.trim();
+    public void setDes(String des) {
+        this.des = des == null ? null : des.trim();
     }
 }

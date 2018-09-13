@@ -7,46 +7,47 @@ import com.qf.shopping.pojo.Role;
 
 public class RoleDto {
 
-	private Integer rId;
+	private Integer id;
 
-	private String rName;
+	private String name;
 
-	private String rDes;
+	private String des;
 
 	
 	public RoleDto() {
 	}
 
 	public RoleDto(Role r) {
-		this.rId = r.getrId();
-		this.rName = r.getrName();
-		this.rDes = r.getrDes();
+		this.id = r.getId();
+		this.name = r.getName();
+		this.des = r.getDes();
 	}
 
-	public Integer getrId() {
-		return rId;
-	}
-
-	public void setrId(Integer rId) {
-		this.rId = rId;
-	}
-
-	public String getrName() {
-		return rName;
-	}
-
-	public void setrName(String rName) {
-		this.rName = rName;
-	}
-
-	public String getrDes() {
-		return rDes;
-	}
-
-	public void setrDes(String rDes) {
-		this.rDes = rDes;
-	}
 	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDes() {
+		return des;
+	}
+
+	public void setDes(String des) {
+		this.des = des;
+	}
+
 	public static List<RoleDto> getDtos (List<Role> pos) {
 		List<RoleDto> dtos = new ArrayList<RoleDto>();
 		for (Role po : pos) {

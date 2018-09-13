@@ -2,9 +2,12 @@ package com.qf.shopping.pojo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class UserAction {
     private Integer behaviorId;
 
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", locale = "zh", timezone="GMT+8")
     private Date startTime;
 
     private Date endTime;
@@ -13,7 +16,20 @@ public class UserAction {
 
     private String state;
 
-    public Integer getBehaviorId() {
+    private Integer userId;
+    
+    private User user;
+    
+
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Integer getBehaviorId() {
         return behaviorId;
     }
 
@@ -51,5 +67,13 @@ public class UserAction {
 
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

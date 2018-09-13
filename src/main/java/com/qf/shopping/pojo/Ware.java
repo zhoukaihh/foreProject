@@ -13,14 +13,26 @@ public class Ware {
 
     private String goodImage;
 
-    private String goodDiscount;
+    private String goodwNum;
 
     private String goodPrice;
 
     private Integer secondTypeId;
+
+    private Integer gms;
+
+    private Integer gams;
+
+    private Integer gnum;
+
+    private Integer glNum;
+
+    private Integer gewNum;
+
+    private Integer version;
     
     private SecondType secondType;
-
+    
     
     public SecondType getSecondType() {
 		return secondType;
@@ -78,12 +90,12 @@ public class Ware {
         this.goodImage = goodImage == null ? null : goodImage.trim();
     }
 
-    public String getGoodDiscount() {
-        return goodDiscount;
+    public String getGoodwNum() {
+        return goodwNum;
     }
 
-    public void setGoodDiscount(String goodDiscount) {
-        this.goodDiscount = goodDiscount == null ? null : goodDiscount.trim();
+    public void setGoodwNum(String goodwNum) {
+        this.goodwNum = goodwNum == null ? null : goodwNum.trim();
     }
 
     public String getGoodPrice() {
@@ -100,5 +112,53 @@ public class Ware {
 
     public void setSecondTypeId(Integer secondTypeId) {
         this.secondTypeId = secondTypeId;
+    }
+
+    public Integer getGms() {
+        return gms;
+    }
+
+    public void setGms(Integer gms) {
+        this.gms = gms;
+    }
+
+    public Integer getGams() {
+        return gams;
+    }
+
+    public void setGams(Integer gams) {
+        this.gams = gams;
+    }
+
+    public Integer getGnum() {
+        return gnum;
+    }
+
+    public void setGnum(Integer gnum) {
+        this.gnum = gnum;
+    }
+
+    public Integer getGlNum() {
+        return glNum;
+    }
+
+    public void setGlNum(Integer glNum) {
+        this.glNum = glNum;
+    }
+
+    public Integer getGewNum() {
+        return gewNum;
+    }
+
+    public void setGewNum(Integer gewNum) {
+        this.gewNum = gewNum;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }

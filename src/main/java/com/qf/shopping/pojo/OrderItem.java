@@ -11,7 +11,7 @@ public class OrderItem {
 
     private String goodNums;
 
-    private String goodPrice;
+    private Float goodPrice;
 
     private String goodImage;
 
@@ -19,7 +19,31 @@ public class OrderItem {
 
     private String itemTotal;
 
-    public Integer getOrderItemId() {
+    private Integer orderId;
+    
+    private Ware ware;
+    
+    private Order order;
+    
+    
+
+    public Ware getWare() {
+		return ware;
+	}
+
+	public void setWare(Ware ware) {
+		this.ware = ware;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public Integer getOrderItemId() {
         return orderItemId;
     }
 
@@ -59,12 +83,12 @@ public class OrderItem {
         this.goodNums = goodNums == null ? null : goodNums.trim();
     }
 
-    public String getGoodPrice() {
+    public Float getGoodPrice() {
         return goodPrice;
     }
 
-    public void setGoodPrice(String goodPrice) {
-        this.goodPrice = goodPrice == null ? null : goodPrice.trim();
+    public void setGoodPrice(Float goodPrice) {
+        this.goodPrice = goodPrice;
     }
 
     public String getGoodImage() {
@@ -89,5 +113,13 @@ public class OrderItem {
 
     public void setItemTotal(String itemTotal) {
         this.itemTotal = itemTotal == null ? null : itemTotal.trim();
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 }

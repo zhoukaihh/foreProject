@@ -10,4 +10,12 @@ public interface IWareService {
 
 	List<WareDto> findAllgoods(Integer pageNo);
 
+	void create(WareDto dto);
+
+	void delete(Integer goodId);
+
+	WareDto findById(Integer goodId);
+
+	void update(WareDto dto);
+
 }

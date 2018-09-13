@@ -20,4 +20,11 @@ public class FirstType {
     public void setFirstTypeName(String firstTypeName) {
         this.firstTypeName = firstTypeName == null ? null : firstTypeName.trim();
     }
+
+	@Override
+	public String toString() {
+		return "FirstType [firstTypeId=" + firstTypeId + ", firstTypeName=" + firstTypeName + "]";
+	}
+    
+    
 }

@@ -3,14 +3,16 @@ package com.qf.shopping.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.qf.shopping.dto.RoleDto;
+
 public class User {
-    private Integer uId;
+    private Integer id;
 
-    private String uLoginName;
+    private String loginName;
 
-    private String uPassword;
+    private String password;
 
-    private String uTelNum;
+    private String telNum;
 
     private String gender;
 
@@ -19,10 +21,10 @@ public class User {
     private String code;
 
     private Integer state;
-
+    
     private List<Role> roles = new ArrayList<Role>();
     
-    
+
     public List<Role> getRoles() {
 		return roles;
 	}
@@ -31,36 +33,36 @@ public class User {
 		this.roles = roles;
 	}
 
-	public Integer getuId() {
-        return uId;
+	public Integer getId() {
+        return id;
     }
 
-    public void setuId(Integer uId) {
-        this.uId = uId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getuLoginName() {
-        return uLoginName;
+    public String getLoginName() {
+        return loginName;
     }
 
-    public void setuLoginName(String uLoginName) {
-        this.uLoginName = uLoginName == null ? null : uLoginName.trim();
+    public void setLoginName(String loginName) {
+        this.loginName = loginName == null ? null : loginName.trim();
     }
 
-    public String getuPassword() {
-        return uPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setuPassword(String uPassword) {
-        this.uPassword = uPassword == null ? null : uPassword.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
-    public String getuTelNum() {
-        return uTelNum;
+    public String getTelNum() {
+        return telNum;
     }
 
-    public void setuTelNum(String uTelNum) {
-        this.uTelNum = uTelNum == null ? null : uTelNum.trim();
+    public void setTelNum(String telNum) {
+        this.telNum = telNum == null ? null : telNum.trim();
     }
 
     public String getGender() {
@@ -94,13 +96,4 @@ public class User {
     public void setState(Integer state) {
         this.state = state;
     }
-
-	@Override
-	public String toString() {
-		return "User [uId=" + uId + ", uLoginName=" + uLoginName + ", uPassword=" + uPassword + ", uTelNum=" + uTelNum
-				+ ", gender=" + gender + ", email=" + email + ", code=" + code + ", state=" + state + ", roles=" + roles
-				+ "]";
-	}
-    
-    
 }

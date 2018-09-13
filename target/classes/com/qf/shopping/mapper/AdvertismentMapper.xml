@@ -6,7 +6,7 @@
     <result column="adType" property="adType" jdbcType="VARCHAR" />
     <result column="actionUrl" property="actionUrl" jdbcType="VARCHAR" />
     <result column="imgPath" property="imgPath" jdbcType="VARCHAR" />
-    <result column="adStartTime" property="adStartTime" jdbcType="DATE" />
+    <result column="adStartTime" property="adStartTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -104,7 +104,7 @@
     insert into t_ad (adId, adType, actionUrl, 
       imgPath, adStartTime)
     values (#{adId,jdbcType=INTEGER}, #{adType,jdbcType=VARCHAR}, #{actionUrl,jdbcType=VARCHAR}, 
-      #{imgPath,jdbcType=VARCHAR}, #{adStartTime,jdbcType=DATE})
+      #{imgPath,jdbcType=VARCHAR}, #{adStartTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.qf.shopping.pojo.Advertisment" >
     insert into t_ad
@@ -139,7 +139,7 @@
         #{imgPath,jdbcType=VARCHAR},
       </if>
       <if test="adStartTime != null" >
-        #{adStartTime,jdbcType=DATE},
+        #{adStartTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -165,7 +165,7 @@
         imgPath = #{record.imgPath,jdbcType=VARCHAR},
       </if>
       <if test="record.adStartTime != null" >
-        adStartTime = #{record.adStartTime,jdbcType=DATE},
+        adStartTime = #{record.adStartTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -178,7 +178,7 @@
       adType = #{record.adType,jdbcType=VARCHAR},
       actionUrl = #{record.actionUrl,jdbcType=VARCHAR},
       imgPath = #{record.imgPath,jdbcType=VARCHAR},
-      adStartTime = #{record.adStartTime,jdbcType=DATE}
+      adStartTime = #{record.adStartTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -196,7 +196,7 @@
         imgPath = #{imgPath,jdbcType=VARCHAR},
       </if>
       <if test="adStartTime != null" >
-        adStartTime = #{adStartTime,jdbcType=DATE},
+        adStartTime = #{adStartTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where adId = #{adId,jdbcType=INTEGER}
@@ -206,7 +206,7 @@
     set adType = #{adType,jdbcType=VARCHAR},
       actionUrl = #{actionUrl,jdbcType=VARCHAR},
       imgPath = #{imgPath,jdbcType=VARCHAR},
-      adStartTime = #{adStartTime,jdbcType=DATE}
+      adStartTime = #{adStartTime,jdbcType=TIMESTAMP}
     where adId = #{adId,jdbcType=INTEGER}
   </update>
 </mapper>

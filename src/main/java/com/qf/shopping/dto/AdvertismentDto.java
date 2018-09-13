@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.qf.shopping.pojo.Advertisment;
 
@@ -20,6 +22,14 @@ public class AdvertismentDto {
 	private Date adStartTime;
 
 	
+	public Date getAdStartTime() {
+		return adStartTime;
+	}
+
+	public void setAdStartTime(Date adStartTime) {
+		this.adStartTime = adStartTime;
+	}
+
 	public AdvertismentDto() {
 	}
 	
@@ -63,14 +73,6 @@ public class AdvertismentDto {
 		this.imgPath = imgPath;
 	}
 
-	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", locale = "zh", timezone="GMT+8")
-	public Date getAdStartTime() {
-		return adStartTime;
-	}
-
-	public void setAdStartTime(Date adStartTime) {
-		this.adStartTime = adStartTime;
-	}
 	
 	public static List<AdvertismentDto> getDtos(List<Advertisment> pos){
 		List<AdvertismentDto> dtos = new ArrayList<AdvertismentDto>();

@@ -1,16 +1,15 @@
 package com.qf.shopping.pojo;
 
 public class SecondType {
-   
-	private Integer secondTypeId;
+    private Integer secondTypeId;
 
     private String secondTypeName;
 
     private Integer firstTypeId;
-    
+
     private FirstType firstType;
     
-
+    
     public FirstType getFirstType() {
 		return firstType;
 	}

@@ -7,21 +7,21 @@ import com.qf.shopping.pojo.User;
 
 public class UserDto {
 
-	private Integer uId;
+	 private Integer id;
 
-	private String uLoginName;
+	    private String loginName;
 
-	private String uPassword;
+	    private String password;
 
-	private String uTelNum;
+	    private String telNum;
 
-	private String gender;
+	    private String gender;
 
-	private String email;
+	    private String email;
 
-	private String code;
+	    private String code;
 
-	private Integer state;
+	    private Integer state;
 	
 	private List<RoleDto> roles = new ArrayList<RoleDto>();
 
@@ -29,47 +29,49 @@ public class UserDto {
 	}
 	
 	public UserDto(User u){
-		this.setuId(u.getuId());
-		this.setuLoginName(u.getuLoginName());
+		this.setId(u.getId());
+		this.setLoginName(u.getLoginName());
 		this.setCode(u.getCode());
 		this.setEmail(u.getEmail());
 		this.setGender(u.getGender());
 		this.setState(u.getState());
-		this.setuPassword(u.getuPassword());
-		this.setuTelNum(u.getuTelNum());
+		this.setPassword(u.getPassword());
+		this.setTelNum(u.getTelNum());
 		this.setRoles(RoleDto.getDtos(u.getRoles()));
 	}
 
-	public Integer getuId() {
-		return uId;
+	
+	
+	public Integer getId() {
+		return id;
 	}
 
-	public void setuId(Integer uId) {
-		this.uId = uId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public String getuLoginName() {
-		return uLoginName;
+	public String getLoginName() {
+		return loginName;
 	}
 
-	public void setuLoginName(String uLoginName) {
-		this.uLoginName = uLoginName;
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
 	}
 
-	public String getuPassword() {
-		return uPassword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setuPassword(String uPassword) {
-		this.uPassword = uPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getuTelNum() {
-		return uTelNum;
+	public String getTelNum() {
+		return telNum;
 	}
 
-	public void setuTelNum(String uTelNum) {
-		this.uTelNum = uTelNum;
+	public void setTelNum(String telNum) {
+		this.telNum = telNum;
 	}
 
 	public String getGender() {
@@ -111,7 +113,7 @@ public class UserDto {
 	public void setRoles(List<RoleDto> roles) {
 		this.roles = roles;
 	}
-	
+
 	public static List<UserDto> getDtos (List<User> pos) {
 		List<UserDto> dtos = new ArrayList<UserDto>();
 		for (User u : pos) {

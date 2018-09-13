@@ -7,10 +7,11 @@
     <result column="goodName" property="goodName" jdbcType="VARCHAR" />
     <result column="goodDes" property="goodDes" jdbcType="VARCHAR" />
     <result column="goodNums" property="goodNums" jdbcType="VARCHAR" />
-    <result column="goodPrice" property="goodPrice" jdbcType="VARCHAR" />
+    <result column="goodPrice" property="goodPrice" jdbcType="REAL" />
     <result column="goodImage" property="goodImage" jdbcType="VARCHAR" />
     <result column="buyNum" property="buyNum" jdbcType="INTEGER" />
     <result column="itemTotal" property="itemTotal" jdbcType="VARCHAR" />
+    <result column="orderId" property="orderId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    orderItemId, goodId, goodName, goodDes, goodNums, goodPrice, goodImage, buyNum, itemTotal
+    orderItemId, goodId, goodName, goodDes, goodNums, goodPrice, goodImage, buyNum, itemTotal, 
+    orderId
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.shopping.pojo.OrderItemExample" >
     select
@@ -107,12 +109,12 @@
   <insert id="insert" parameterType="com.qf.shopping.pojo.OrderItem" >
     insert into t_orderitem (orderItemId, goodId, goodName, 
       goodDes, goodNums, goodPrice, 
-      goodImage, buyNum, itemTotal
-      )
+      goodImage, buyNum, itemTotal, 
+      orderId)
     values (#{orderItemId,jdbcType=INTEGER}, #{goodId,jdbcType=INTEGER}, #{goodName,jdbcType=VARCHAR}, 
-      #{goodDes,jdbcType=VARCHAR}, #{goodNums,jdbcType=VARCHAR}, #{goodPrice,jdbcType=VARCHAR}, 
-      #{goodImage,jdbcType=VARCHAR}, #{buyNum,jdbcType=INTEGER}, #{itemTotal,jdbcType=VARCHAR}
-      )
+      #{goodDes,jdbcType=VARCHAR}, #{goodNums,jdbcType=VARCHAR}, #{goodPrice,jdbcType=REAL}, 
+      #{goodImage,jdbcType=VARCHAR}, #{buyNum,jdbcType=INTEGER}, #{itemTotal,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.qf.shopping.pojo.OrderItem" >
     insert into t_orderitem
@@ -144,6 +146,9 @@
       <if test="itemTotal != null" >
         itemTotal,
       </if>
+      <if test="orderId != null" >
+        orderId,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="orderItemId != null" >
@@ -162,7 +167,7 @@
         #{goodNums,jdbcType=VARCHAR},
       </if>
       <if test="goodPrice != null" >
-        #{goodPrice,jdbcType=VARCHAR},
+        #{goodPrice,jdbcType=REAL},
       </if>
       <if test="goodImage != null" >
         #{goodImage,jdbcType=VARCHAR},
@@ -172,6 +177,9 @@
       </if>
       <if test="itemTotal != null" >
         #{itemTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -200,7 +208,7 @@
         goodNums = #{record.goodNums,jdbcType=VARCHAR},
       </if>
       <if test="record.goodPrice != null" >
-        goodPrice = #{record.goodPrice,jdbcType=VARCHAR},
+        goodPrice = #{record.goodPrice,jdbcType=REAL},
       </if>
       <if test="record.goodImage != null" >
         goodImage = #{record.goodImage,jdbcType=VARCHAR},
@@ -210,6 +218,9 @@
       </if>
       <if test="record.itemTotal != null" >
         itemTotal = #{record.itemTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        orderId = #{record.orderId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -223,10 +234,11 @@
       goodName = #{record.goodName,jdbcType=VARCHAR},
       goodDes = #{record.goodDes,jdbcType=VARCHAR},
       goodNums = #{record.goodNums,jdbcType=VARCHAR},
-      goodPrice = #{record.goodPrice,jdbcType=VARCHAR},
+      goodPrice = #{record.goodPrice,jdbcType=REAL},
       goodImage = #{record.goodImage,jdbcType=VARCHAR},
       buyNum = #{record.buyNum,jdbcType=INTEGER},
-      itemTotal = #{record.itemTotal,jdbcType=VARCHAR}
+      itemTotal = #{record.itemTotal,jdbcType=VARCHAR},
+      orderId = #{record.orderId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -247,7 +259,7 @@
         goodNums = #{goodNums,jdbcType=VARCHAR},
       </if>
       <if test="goodPrice != null" >
-        goodPrice = #{goodPrice,jdbcType=VARCHAR},
+        goodPrice = #{goodPrice,jdbcType=REAL},
       </if>
       <if test="goodImage != null" >
         goodImage = #{goodImage,jdbcType=VARCHAR},
@@ -258,6 +270,9 @@
       <if test="itemTotal != null" >
         itemTotal = #{itemTotal,jdbcType=VARCHAR},
       </if>
+      <if test="orderId != null" >
+        orderId = #{orderId,jdbcType=INTEGER},
+      </if>
     </set>
     where orderItemId = #{orderItemId,jdbcType=INTEGER}
   </update>
@@ -267,10 +282,11 @@
       goodName = #{goodName,jdbcType=VARCHAR},
       goodDes = #{goodDes,jdbcType=VARCHAR},
       goodNums = #{goodNums,jdbcType=VARCHAR},
-      goodPrice = #{goodPrice,jdbcType=VARCHAR},
+      goodPrice = #{goodPrice,jdbcType=REAL},
       goodImage = #{goodImage,jdbcType=VARCHAR},
       buyNum = #{buyNum,jdbcType=INTEGER},
-      itemTotal = #{itemTotal,jdbcType=VARCHAR}
+      itemTotal = #{itemTotal,jdbcType=VARCHAR},
+      orderId = #{orderId,jdbcType=INTEGER}
     where orderItemId = #{orderItemId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,6 +1,11 @@
 package com.qf.shopping.pojo;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Advertisment {
     private Integer adId;
@@ -11,6 +16,7 @@ public class Advertisment {
 
     private String imgPath;
 
+    @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private Date adStartTime;
 
     public Integer getAdId() {
@@ -50,6 +56,10 @@ public class Advertisment {
     }
 
     public void setAdStartTime(Date adStartTime) {
+//    	Instant instant = adStartTime.toInstant();
+//        ZoneId zoneId = ZoneId.systemDefault();
+//
+//        LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
         this.adStartTime = adStartTime;
     }
 }

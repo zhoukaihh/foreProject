@@ -8,9 +8,15 @@
     <result column="goodNums" property="goodNums" jdbcType="VARCHAR" />
     <result column="goodDiscountPrice" property="goodDiscountPrice" jdbcType="VARCHAR" />
     <result column="goodImage" property="goodImage" jdbcType="VARCHAR" />
-    <result column="goodDiscount" property="goodDiscount" jdbcType="VARCHAR" />
+    <result column="goodwNum" property="goodwNum" jdbcType="VARCHAR" />
     <result column="goodPrice" property="goodPrice" jdbcType="VARCHAR" />
     <result column="secondTypeId" property="secondTypeId" jdbcType="INTEGER" />
+    <result column="gms" property="gms" jdbcType="INTEGER" />
+    <result column="gams" property="gams" jdbcType="INTEGER" />
+    <result column="gnum" property="gnum" jdbcType="INTEGER" />
+    <result column="glNum" property="glNum" jdbcType="INTEGER" />
+    <result column="gewNum" property="gewNum" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,8 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    goodId, goodName, goodDes, goodNums, goodDiscountPrice, goodImage, goodDiscount, 
-    goodPrice, secondTypeId
+    goodId, goodName, goodDes, goodNums, goodDiscountPrice, goodImage, goodwNum, goodPrice, 
+    secondTypeId, gms, gams, gnum, glNum, gewNum, version
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.shopping.pojo.WareExample" >
     select
@@ -108,12 +114,14 @@
   <insert id="insert" parameterType="com.qf.shopping.pojo.Ware" >
     insert into t_ware (goodId, goodName, goodDes, 
       goodNums, goodDiscountPrice, goodImage, 
-      goodDiscount, goodPrice, secondTypeId
-      )
+      goodwNum, goodPrice, secondTypeId, 
+      gms, gams, gnum, glNum, 
+      gewNum, version)
     values (#{goodId,jdbcType=INTEGER}, #{goodName,jdbcType=VARCHAR}, #{goodDes,jdbcType=VARCHAR}, 
       #{goodNums,jdbcType=VARCHAR}, #{goodDiscountPrice,jdbcType=VARCHAR}, #{goodImage,jdbcType=VARCHAR}, 
-      #{goodDiscount,jdbcType=VARCHAR}, #{goodPrice,jdbcType=VARCHAR}, #{secondTypeId,jdbcType=INTEGER}
-      )
+      #{goodwNum,jdbcType=VARCHAR}, #{goodPrice,jdbcType=VARCHAR}, #{secondTypeId,jdbcType=INTEGER}, 
+      #{gms,jdbcType=INTEGER}, #{gams,jdbcType=INTEGER}, #{gnum,jdbcType=INTEGER}, #{glNum,jdbcType=INTEGER}, 
+      #{gewNum,jdbcType=INTEGER}, #{version,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.qf.shopping.pojo.Ware" >
     insert into t_ware
@@ -136,14 +144,32 @@
       <if test="goodImage != null" >
         goodImage,
       </if>
-      <if test="goodDiscount != null" >
-        goodDiscount,
+      <if test="goodwNum != null" >
+        goodwNum,
       </if>
       <if test="goodPrice != null" >
         goodPrice,
       </if>
       <if test="secondTypeId != null" >
         secondTypeId,
+      </if>
+      <if test="gms != null" >
+        gms,
+      </if>
+      <if test="gams != null" >
+        gams,
+      </if>
+      <if test="gnum != null" >
+        gnum,
+      </if>
+      <if test="glNum != null" >
+        glNum,
+      </if>
+      <if test="gewNum != null" >
+        gewNum,
+      </if>
+      <if test="version != null" >
+        version,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -165,14 +191,32 @@
       <if test="goodImage != null" >
         #{goodImage,jdbcType=VARCHAR},
       </if>
-      <if test="goodDiscount != null" >
-        #{goodDiscount,jdbcType=VARCHAR},
+      <if test="goodwNum != null" >
+        #{goodwNum,jdbcType=VARCHAR},
       </if>
       <if test="goodPrice != null" >
         #{goodPrice,jdbcType=VARCHAR},
       </if>
       <if test="secondTypeId != null" >
         #{secondTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="gms != null" >
+        #{gms,jdbcType=INTEGER},
+      </if>
+      <if test="gams != null" >
+        #{gams,jdbcType=INTEGER},
+      </if>
+      <if test="gnum != null" >
+        #{gnum,jdbcType=INTEGER},
+      </if>
+      <if test="glNum != null" >
+        #{glNum,jdbcType=INTEGER},
+      </if>
+      <if test="gewNum != null" >
+        #{gewNum,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -203,14 +247,32 @@
       <if test="record.goodImage != null" >
         goodImage = #{record.goodImage,jdbcType=VARCHAR},
       </if>
-      <if test="record.goodDiscount != null" >
-        goodDiscount = #{record.goodDiscount,jdbcType=VARCHAR},
+      <if test="record.goodwNum != null" >
+        goodwNum = #{record.goodwNum,jdbcType=VARCHAR},
       </if>
       <if test="record.goodPrice != null" >
         goodPrice = #{record.goodPrice,jdbcType=VARCHAR},
       </if>
       <if test="record.secondTypeId != null" >
         secondTypeId = #{record.secondTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gms != null" >
+        gms = #{record.gms,jdbcType=INTEGER},
+      </if>
+      <if test="record.gams != null" >
+        gams = #{record.gams,jdbcType=INTEGER},
+      </if>
+      <if test="record.gnum != null" >
+        gnum = #{record.gnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.glNum != null" >
+        glNum = #{record.glNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.gewNum != null" >
+        gewNum = #{record.gewNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -225,9 +287,15 @@
       goodNums = #{record.goodNums,jdbcType=VARCHAR},
       goodDiscountPrice = #{record.goodDiscountPrice,jdbcType=VARCHAR},
       goodImage = #{record.goodImage,jdbcType=VARCHAR},
-      goodDiscount = #{record.goodDiscount,jdbcType=VARCHAR},
+      goodwNum = #{record.goodwNum,jdbcType=VARCHAR},
       goodPrice = #{record.goodPrice,jdbcType=VARCHAR},
-      secondTypeId = #{record.secondTypeId,jdbcType=INTEGER}
+      secondTypeId = #{record.secondTypeId,jdbcType=INTEGER},
+      gms = #{record.gms,jdbcType=INTEGER},
+      gams = #{record.gams,jdbcType=INTEGER},
+      gnum = #{record.gnum,jdbcType=INTEGER},
+      glNum = #{record.glNum,jdbcType=INTEGER},
+      gewNum = #{record.gewNum,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -250,14 +318,32 @@
       <if test="goodImage != null" >
         goodImage = #{goodImage,jdbcType=VARCHAR},
       </if>
-      <if test="goodDiscount != null" >
-        goodDiscount = #{goodDiscount,jdbcType=VARCHAR},
+      <if test="goodwNum != null" >
+        goodwNum = #{goodwNum,jdbcType=VARCHAR},
       </if>
       <if test="goodPrice != null" >
         goodPrice = #{goodPrice,jdbcType=VARCHAR},
       </if>
       <if test="secondTypeId != null" >
         secondTypeId = #{secondTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="gms != null" >
+        gms = #{gms,jdbcType=INTEGER},
+      </if>
+      <if test="gams != null" >
+        gams = #{gams,jdbcType=INTEGER},
+      </if>
+      <if test="gnum != null" >
+        gnum = #{gnum,jdbcType=INTEGER},
+      </if>
+      <if test="glNum != null" >
+        glNum = #{glNum,jdbcType=INTEGER},
+      </if>
+      <if test="gewNum != null" >
+        gewNum = #{gewNum,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
       </if>
     </set>
     where goodId = #{goodId,jdbcType=INTEGER}
@@ -269,9 +355,15 @@
       goodNums = #{goodNums,jdbcType=VARCHAR},
       goodDiscountPrice = #{goodDiscountPrice,jdbcType=VARCHAR},
       goodImage = #{goodImage,jdbcType=VARCHAR},
-      goodDiscount = #{goodDiscount,jdbcType=VARCHAR},
+      goodwNum = #{goodwNum,jdbcType=VARCHAR},
       goodPrice = #{goodPrice,jdbcType=VARCHAR},
-      secondTypeId = #{secondTypeId,jdbcType=INTEGER}
+      secondTypeId = #{secondTypeId,jdbcType=INTEGER},
+      gms = #{gms,jdbcType=INTEGER},
+      gams = #{gams,jdbcType=INTEGER},
+      gnum = #{gnum,jdbcType=INTEGER},
+      glNum = #{glNum,jdbcType=INTEGER},
+      gewNum = #{gewNum,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER}
     where goodId = #{goodId,jdbcType=INTEGER}
   </update>
 </mapper>

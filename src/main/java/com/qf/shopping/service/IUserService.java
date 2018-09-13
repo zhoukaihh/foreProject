@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.ui.Model;
+
 import com.qf.shopping.dto.UserDto;
 import com.qf.shopping.pojo.User;
+import com.qf.shopping.pojo.UserRoleKey;
 /**
  * service接口
  * @author apple
@@ -16,7 +19,19 @@ public interface IUserService {
      * 获取全部信息
      * @return
      */
-	List<User> findUserAll();
+	List<UserDto> findUserAll();
 
 	UserDto authenticate(HttpServletRequest req,UserDto user,String loginType);
+
+	void create(UserDto dto, String roleName);
+
+	void delete(Integer id);
+
+	UserDto findById(Integer id, Model model);
+
+	void update(UserDto dto, String roleName);
+
+	void vipToSeller(Integer id);
+
+	List<UserRoleKey> findUserRoleKey(Integer id);
 }
