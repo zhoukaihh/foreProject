@@ -34,4 +34,6 @@ public interface IUserService {
 	void vipToSeller(Integer id);
 
 	List<UserRoleKey> findUserRoleKey(Integer id);
+
+	List<String> findRoleNameByUser(UserDto dto);
 }

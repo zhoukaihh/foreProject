@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.qf.shopping.pojo.FirstType;
+import com.qf.shopping.pojo.SecondType;
 
 public class FirstTypeDto {
 
@@ -11,7 +12,11 @@ public class FirstTypeDto {
 
     private String firstTypeName;
     
+    private List<SecondType> secondTypes = new ArrayList<SecondType>();
     
+    
+
+	
 
 	public FirstTypeDto() {
 	}
@@ -19,8 +24,18 @@ public class FirstTypeDto {
 	public FirstTypeDto(FirstType po) {
 		this.firstTypeId=po.getFirstTypeId();
 		this.firstTypeName=po.getFirstTypeName();
+		this.secondTypes=po.getSecondTypes();
 	}
 
+	
+	public List<SecondType> getSecondTypes() {
+		return secondTypes;
+	}
+
+	public void setSecondTypes(List<SecondType> secondTypes) {
+		this.secondTypes = secondTypes;
+	}
+	
 	public Integer getFirstTypeId() {
 		return firstTypeId;
 	}

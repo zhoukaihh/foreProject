@@ -50,17 +50,17 @@
     - containing all Cocoon components (and user defined beans as well).
     -->
   <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    <listener-class>com.qf.shopping.listener.MyContextLoadListener</listener-class>
   </listener>
 
   <!--
     - Declare Spring request listener which sets up the required RequestAttributes
     - to support Springs and Cocoon custom bean scopes like the request scope or the
     - session scope.
-    -->
+   
   <listener>
     <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-  </listener>
+  </listener> -->
 
   <!-- Servlet配置 ========================================== -->
 

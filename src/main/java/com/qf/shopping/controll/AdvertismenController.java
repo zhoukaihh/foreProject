@@ -96,6 +96,12 @@ public class AdvertismenController {
 		return path1;
 	}*/
 
+	@RequestMapping("/getAll")
+	public List<AdvertismentDto> findAll(){
+		List<AdvertismentDto> dtos = adService.findAll();
+		return dtos;
+	}
+	
 	/**
 	 * 通过id查询广告
 	 * @param adId
@@ -151,7 +157,7 @@ public class AdvertismenController {
 	public String delete(Integer adId,Integer pageNo){
 		adService.delete(adId);
 		return (new StringBuilder("redirect:/ads/list?pageNo=")).append(pageNo).toString();
-		
-		
 	}
+	
+	
 }

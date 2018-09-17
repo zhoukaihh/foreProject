@@ -3,8 +3,8 @@
 <mapper namespace="com.qf.shopping.mapper.UserActionMapper" >
   <resultMap id="BaseResultMap" type="com.qf.shopping.pojo.UserAction" >
     <id column="behaviorId" property="behaviorId" jdbcType="INTEGER" />
-    <result column="startTime" property="startTime" jdbcType="DATE" />
-    <result column="endTime" property="endTime" jdbcType="DATE" />
+    <result column="startTime" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="endTime" property="endTime" jdbcType="TIMESTAMP" />
     <result column="behavior" property="behavior" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="userId" property="userId" jdbcType="INTEGER" />
@@ -105,7 +105,7 @@
     insert into t_useraction (behaviorId, startTime, endTime, 
       behavior, state, userId
       )
-    values (#{behaviorId,jdbcType=INTEGER}, #{startTime,jdbcType=DATE}, #{endTime,jdbcType=DATE}, 
+    values (#{behaviorId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
       #{behavior,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
       )
   </insert>
@@ -136,10 +136,10 @@
         #{behaviorId,jdbcType=INTEGER},
       </if>
       <if test="startTime != null" >
-        #{startTime,jdbcType=DATE},
+        #{startTime,jdbcType=TIMESTAMP},
       </if>
       <if test="endTime != null" >
-        #{endTime,jdbcType=DATE},
+        #{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="behavior != null" >
         #{behavior,jdbcType=VARCHAR},
@@ -165,10 +165,10 @@
         behaviorId = #{record.behaviorId,jdbcType=INTEGER},
       </if>
       <if test="record.startTime != null" >
-        startTime = #{record.startTime,jdbcType=DATE},
+        startTime = #{record.startTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.endTime != null" >
-        endTime = #{record.endTime,jdbcType=DATE},
+        endTime = #{record.endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.behavior != null" >
         behavior = #{record.behavior,jdbcType=VARCHAR},
@@ -187,8 +187,8 @@
   <update id="updateByExample" parameterType="map" >
     update t_useraction
     set behaviorId = #{record.behaviorId,jdbcType=INTEGER},
-      startTime = #{record.startTime,jdbcType=DATE},
-      endTime = #{record.endTime,jdbcType=DATE},
+      startTime = #{record.startTime,jdbcType=TIMESTAMP},
+      endTime = #{record.endTime,jdbcType=TIMESTAMP},
       behavior = #{record.behavior,jdbcType=VARCHAR},
       state = #{record.state,jdbcType=VARCHAR},
       userId = #{record.userId,jdbcType=INTEGER}
@@ -200,10 +200,10 @@
     update t_useraction
     <set >
       <if test="startTime != null" >
-        startTime = #{startTime,jdbcType=DATE},
+        startTime = #{startTime,jdbcType=TIMESTAMP},
       </if>
       <if test="endTime != null" >
-        endTime = #{endTime,jdbcType=DATE},
+        endTime = #{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="behavior != null" >
         behavior = #{behavior,jdbcType=VARCHAR},
@@ -219,8 +219,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qf.shopping.pojo.UserAction" >
     update t_useraction
-    set startTime = #{startTime,jdbcType=DATE},
-      endTime = #{endTime,jdbcType=DATE},
+    set startTime = #{startTime,jdbcType=TIMESTAMP},
+      endTime = #{endTime,jdbcType=TIMESTAMP},
       behavior = #{behavior,jdbcType=VARCHAR},
       state = #{state,jdbcType=VARCHAR},
       userId = #{userId,jdbcType=INTEGER}

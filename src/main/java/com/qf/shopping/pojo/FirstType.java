@@ -1,11 +1,26 @@
 package com.qf.shopping.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FirstType {
     private Integer firstTypeId;
 
     private String firstTypeName;
+    
+    private List<SecondType> secondTypes = new ArrayList<SecondType>();
+    
+    
 
-    public Integer getFirstTypeId() {
+    public List<SecondType> getSecondTypes() {
+		return secondTypes;
+	}
+
+	public void setSecondTypes(List<SecondType> secondTypes) {
+		this.secondTypes = secondTypes;
+	}
+
+	public Integer getFirstTypeId() {
         return firstTypeId;
     }
 

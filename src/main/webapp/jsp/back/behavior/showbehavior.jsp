@@ -80,6 +80,7 @@ $(document).ready(function(){
 					<th>用户行为编号</th>
 					<th>操作时间</th>
 					<th>操作详情</th>
+					<th>操作状态</th>
 					<th>操作人</th>
 					<th>处理</th>
 
@@ -92,6 +93,7 @@ $(document).ready(function(){
 						<td><fmt:formatDate value="${behaviour.startTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						
 						<td>${behaviour.behavior}</td>
+						<td>${behaviour.state}</td>
 						<td>${behaviour.user.loginName}</td>
 						<td>
 							<a href="${pageContext.request.contextPath}/behaviours/deleteBehaviourById.action?behaviorId=${behaviour.behaviorId}&pageNo=${currentpage}"

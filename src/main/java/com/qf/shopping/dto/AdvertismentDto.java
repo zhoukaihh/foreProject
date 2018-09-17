@@ -81,4 +81,12 @@ public class AdvertismentDto {
 		}
 		return dtos;
 	}
+
+	@Override
+	public String toString() {
+		return "AdvertismentDto [adId=" + adId + ", adType=" + adType + ", actionUrl=" + actionUrl + ", imgPath="
+				+ imgPath + ", adStartTime=" + adStartTime + "]";
+	}
+	
+	
 }

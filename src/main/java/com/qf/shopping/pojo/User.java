@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.qf.shopping.dto.RoleDto;
+import com.qf.shopping.dto.UserDto;
 
 public class User {
     private Integer id;
@@ -24,8 +25,24 @@ public class User {
     
     private List<Role> roles = new ArrayList<Role>();
     
+    
+    public User() {
+	}
 
-    public List<Role> getRoles() {
+    public User(UserDto dto) {
+    	this.code=dto.getCode();
+    	this.email=dto.getEmail();
+    	this.gender=dto.getGender();
+    	this.id=dto.getId();
+    	this.loginName=dto.getLoginName();
+    	this.password=dto.getPassword();
+    	this.state=dto.getState();
+    	this.telNum=dto.getTelNum();
+    			
+    	
+  	}
+    
+	public List<Role> getRoles() {
 		return roles;
 	}
 

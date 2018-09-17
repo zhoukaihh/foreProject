@@ -103,6 +103,7 @@ public class UserService implements IUserService {
 			String md5 = SSMUtil.getMD5(dto.getLoginName(), dto.getPassword());
 			String newMd5 = md5.replaceAll("=", "");
 			logger.info("MD5后得到密码：" + newMd5);
+			logger.info("数据库中的密码：" + u.getPassword());
 			// 判断用户密码是否相同，是否允许登录
 			if (newMd5.equals(u.getPassword())) {
 				// 判断用户的角色权限并且设置到域对象中
@@ -151,6 +152,7 @@ public class UserService implements IUserService {
 		// 密码MD5
 		String md5 = SSMUtil.getMD5(po.getLoginName(), po.getPassword());
 		String newMd5 = md5.replaceAll("=", "");
+		logger.info("创建的密码："+newMd5);
 		po.setPassword(newMd5);
 		userMapper.updateByPrimaryKey(po);
 	}
@@ -242,7 +244,7 @@ public class UserService implements IUserService {
 		RoleExample rex = new RoleExample();
 		rex.createCriteria().andNameEqualTo(name);
 		List<Role> roles = roleMapper.selectByExample(rex);
-		
+
 		UserRoleKey userRoleKey = new UserRoleKey();
 		for (Role role : roles) {
 			userRoleKey.setUser_id(po.getId());
@@ -260,6 +262,37 @@ public class UserService implements IUserService {
 		ure.createCriteria().andUser_idEqualTo(id);
 		List<UserRoleKey> urk = userRoleMapper.selectByExample(ure);
 		return urk;
+	}
+
+	/**
+	 * 通过用户中的名字获取该用户的角色名
+	 */
+	@Override
+	public List<String> findRoleNameByUser(UserDto dto) {
+		// 根据登陆名获取用户信息
+		UserExample ue = new UserExample();
+		ue.createCriteria().andLoginNameEqualTo(dto.getLoginName());
+		List<User> users = userMapper.selectByExample(ue);
+		// 设置用户的角色名
+		List<String> roleNames = new ArrayList<String>();
+		// 进行用户和权限验证
+		// 获取与登录名相同的用户
+		if (users.size() != 0) {
+			// 获取那个登录名对应的用户
+			User u = users.get(0);
+			// 获取用户角色关系表
+			UserRoleExample ure = new UserRoleExample();
+			ure.createCriteria().andUser_idEqualTo(u.getId());
+			List<UserRoleKey> userRoles = userRoleMapper.selectByExample(ure);
+			// 给用户设置他的角色
+			for (UserRoleKey userRole : userRoles) {
+				Integer role_id = userRole.getRole_id();
+				Role role = roleMapper.selectByPrimaryKey(role_id);
+				// 将该用户的角色名全部取出来放到roles里面
+				roleNames.add(role.getName());
+			}
+		}
+		return roleNames;
 	}
 
 }

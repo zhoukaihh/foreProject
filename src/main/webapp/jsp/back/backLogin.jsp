@@ -49,7 +49,7 @@
     <span class="systemlogo"></span> 
        
     <div class="loginbox">
-    <form action="${pageContext.request.contextPath}/login" method="post">  
+    <form action="${pageContext.request.contextPath}/backLogin" method="post">  
     <ul>
     <li><input name="loginName" type="text" class="loginuser" />
         <!-- 区别前后端登录的hidden -->

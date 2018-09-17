@@ -61,5 +61,13 @@ public class UserActionService implements IUserActionService {
 				}
 				return UserActionDto.getDtos(pos1);
 	}
-	
+
+	/**
+	 * 保存用户的行为记录
+	 */
+	@Override
+	public void addRecord(UserAction record) {
+		uActiongMapper.insertSelective(record);
+	}
+
 }

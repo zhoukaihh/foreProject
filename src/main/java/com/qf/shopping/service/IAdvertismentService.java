@@ -20,4 +20,6 @@ public interface IAdvertismentService {
 
 	void update(AdvertismentDto dto);
 
+	List<AdvertismentDto> findAll();
+
 }

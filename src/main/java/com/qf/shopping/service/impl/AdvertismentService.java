@@ -97,5 +97,14 @@ public class AdvertismentService implements IAdvertismentService {
 		po.setAdStartTime(date);
 		adMapper.updateByPrimaryKey(po);
 	}
+
+	/**
+	 * 查询所有广告
+	 */
+	@Override
+	public List<AdvertismentDto> findAll() {
+		List<Advertisment> pos = adMapper.selectByExample(new AdvertismentExample());
+		return AdvertismentDto.getDtos(pos);
+	}
 	
 }

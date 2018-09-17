@@ -2,12 +2,9 @@ package com.qf.shopping.pojo;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class UserAction {
     private Integer behaviorId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", locale = "zh", timezone="GMT+8")
     private Date startTime;
 
     private Date endTime;
