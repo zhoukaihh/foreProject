@@ -65,7 +65,7 @@ public class WareService implements IWareService {
 		//查询所有数据
 		List<Ware> pos = wareMapper.selectByExample(new WareExample());
 		
-		List<Ware> pos1 = new ArrayList<Ware>();;
+		List<Ware> pos1 = new ArrayList<Ware>();
 		//设置分类级别
 		for (Ware po : pos) {
 			//查询每个商品的二级分类

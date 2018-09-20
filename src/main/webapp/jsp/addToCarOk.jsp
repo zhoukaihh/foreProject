@@ -94,7 +94,7 @@
 							</script> -->
 
 					<div class="tb-booth tb-pic tb-s310">
-						<a href="#"><img src="${pageContext.request.contextPath}/images/${good.gPhoto}"
+						<a href="#"><img src="${pageContext.request.contextPath}/shoppingImages/${carItem.good.goodImage}"
 							style="width: 350px; height: 350px" alt="细节展示放大镜特效" rel=""
 							class="jqzoom" /></a>
 					</div>
@@ -109,46 +109,17 @@
 				<!--规格属性-->
 				
 				<div class="tb-detail-hd">
-					<h1>${good.gName}</h1><!--名称-->
+					<h1 style="color: red">商品加入购物车成功！</h1><!--名称-->
+				</div>
+				<div class="tb-detail-hd">
+					<h1>${carItem.good.goodName}</h1><!--名称-->
 				</div>
 				<div class="tb-detail-list">
-					<!--价格-->
-					<div class="tb-detail-price">
-					
-						<li class="price iteminfo_price">
-							<dt>促销价</dt>
-							<dd>
-								<em>¥</em><b class="sys_item_price">${good.gcPrice}</b>
-							</dd>
-						</li>
-						<li class="price iteminfo_mktprice">
-							<dt>原价</dt>
-							<dd>
-								<em>¥</em><b class="sys_item_mktprice">${good.gyPrice}</b>
-							</dd>
-						</li>
-						<div class="clear"></div>
+					<div class='sub-title '> ${carItem.good.goodDes}
+						
 					</div>
+					<span class="txt" title="公开版">尺码：公开版</span><span class="txt">/ 数量：${carItem.count}</span>
 
-
-					<!--销量-->
-					<ul class="tm-ind-panel">
-						<li class="tm-ind-item tm-ind-sellCount canClick">
-							<div class="tm-indcon">
-								<span class="tm-label">月销量</span><span class="tm-count">${good.gms}</span>
-							</div>
-						</li>
-						<li class="tm-ind-item tm-ind-sumCount canClick">
-							<div class="tm-indcon">
-								<span class="tm-label">累计销量</span><span class="tm-count">${good.gams}</span>
-							</div>
-						</li>
-						<li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-							<div class="tm-indcon">
-								<span class="tm-label">累计评价</span><span class="tm-count">这里是累计评价</span>
-							</div>
-						</li>
-					</ul>
 					<div class="clear"></div>
 
 					<!--各种规格-->
@@ -174,35 +145,7 @@
 										<div class="theme-signin-left">
 
 
-											<div class="theme-options">
-												<div class="cart-title number">数量</div>
-												<dd>
-													<input id="min"  class="am-btn am-btn-default" name="" type="button" value="-" />
-													
-													
-													
-													
-													
-													<!-- 如果该商品已经没货了，数量框应该写为0，而且不可修改 -->
-													 <c:if test="${(good.gNum<1)}">
-													     <input readonly="readonly" id="value" name="pic" type="text" value="0" style="width: 30px;" />
-													 </c:if>
-													 <c:if test="${(good.gNum>0)}">
-													     <input id="value" name="pic" type="text" value="1" style="width: 30px;" />
-													 </c:if>
-													<input id="add"  class="am-btn am-btn-default" name="" type="button" value="+" /> 
-													<span id="Stock" class="tb-hidden">库存
-													<c:if test="${(good.gNum<1)}">
-													    <span class="stock" id="stock">${(good.gNum)}</span>件
-													 </c:if>
-													 <c:if test="${(good.gNum>0)}">
-													    <span class="stock" id="stock">${(good.gNum-1)}</span>件
-													 </c:if>
-													
-													</span><span id="nomore" style="color:red; width: 30px;height: 10px;"></span>
-												</dd>
-
-											</div>
+											
 											<div class="clear"></div>
 
 											<div class="btn-op">
@@ -210,17 +153,7 @@
 												<div class="btn close am-btn am-btn-warning">取消</div>
 											</div>
 										</div>
-										<div class="theme-signin-right">
-											<div class="img-info">
-												<img src="${pageContext.request.contextPath}/images/songzi.jpg" />
-											</div>
-											<div class="text-info">
-												<span class="J_Price price-now">¥${good.gcPrice}</span> <span
-													id="Stock" class="tb-hidden">库存<span class="stock">${good.gNum}</span>件
-												</span>
-											</div>
-											
-										</div>
+										
 
 									</form>
 								</div>
@@ -231,42 +164,20 @@
 					<div class="clear"></div>
 					<!--活动	-->
 					<div class="shopPromotion gold">
-						<div class="hot">
-							<dt class="tb-metatit">店铺优惠</dt>
-							<div class="gold-list">
-								<p>
-									购物满2件打8折，满3件7折</span>
-								</p>
-							</div>
-						</div>
-						<div class="clear"></div>
-						<div class="coupon">
-							<dt class="tb-metatit">优惠券</dt>
-							<div class="gold-list">
-								<ul>
-									<li>125减5</li>
-									<li>198减10</li>
-									<li>298减20</li>
-								</ul>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 
-				<div class="pay">
-					<div class="pay-opt">
-						<a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
-						<a><span class="am-icon-heart am-icon-fw">收藏</span></a>
-
-					</div>
+				<div class="pay" >
+					
 					<li>
 						<div class="clearfix tb-btn tb-btn-buy theme-login">
-							<a id="buy" title="点此按钮到下一步确认购买信息" >立即购买</a>
+							<a id="buy" href="${pageContext.request.contextPath}/goods/showGoodById?goodId=${carItem.good.goodId}">查看商品详情</a>
 						</div>
 					</li>
 					<li>
 						<div class="clearfix tb-btn tb-btn-basket theme-login">
-							<a id="LikBasket" title="加入购物车"><i></i>加入购物车</a>
+							<a id="LikBasket" href="${pageContext.request.contextPath}/shopcar/showCar" title="去购物车结算"><i></i>去购物车结算</a>
 						</div>
 					</li>
 				</div>
@@ -310,7 +221,7 @@
 									src="${pageContext.request.contextPath}/images/yuezicopy.jpg" />
 							</p>
 							<ul class="user_info ">
-								<li>用户名:${realuser.userLoginName}</li>
+								<li>用户名:${realuser.loginName}</li>
 								<li>级&nbsp;别:${loginType}</li>
 							</ul>
 						</div>
@@ -437,94 +348,5 @@
 		</div>
 	</div>
 <!-- 我自己的javascript -->
-<script type="text/javascript">
-    $("#addgood1").click(function(){
-    	alert("我进来了");
-    });
-
-</script>
-<script type="text/javascript">
-	
-	    $("#value").change(function(){
-	    	var value = $("#value").val();
-	    	var gNum = ${good.gNum};
-	    	var before = $("#stock").text();
-	    //	alert("value:"+value+"--gNum:"+gNum);
-			if(value <= gNum){
-				$("#stock").text(gNum-value);
-				$("#nomore").text("");
-			}else{
-				$("#value").val(gNum-before);
-				$("#nomore").text("没有更多的了啊喂！");
-				
-			}
-			if(value<1){
-				$("#nomore").text("好歹还是买点呀喂！");
-				$("#value").val(gNum-before);
-			}	
-	    })
-	
-	 	//减少商品数量
-		$("#min").click(function() {
-			var value = $("#value").val();
-			 var stock = $("#stock").text();
-			if(value > 1){
-				$("#value").val(parseInt(value)-1);
-				$("#stock").text(parseInt(stock)+1);
-				$("#nomore").text("");
-			}else{
-				$("#nomore").text("好歹还是买点呀喂！");
-			}
-		});
-		//添加商品数量
-		$("#add").click(function() {
-			 var value = $("#value").val();
-			 var stock = $("#stock").text();
-			
-			 
-			var gNum = ${good.gNum};
-			if(value < gNum){
-				$("#value").val(parseInt(value)+1);
-				$("#stock").text(parseInt(stock)-1);
-				$("#nomore").text("");
-			}else{
-				$("#nomore").text("没这么多货了，老铁");
-			}
-		
-		});
-		//加入购物车功能
-		$("#LikBasket").click(function() {
-			//如果是没有商品可以添加，将加入购物车和立即购买变灰
-			var value = Number($('#value').val());
-			var gNum = Number($('#stock').text());
-			if((value+gNum) == 0){
-				//表示该商品已经没货了
-				
-			}else{
-				window.location.href = "${pageContext.request.contextPath}/shopcar/addToShopcar.action?gId="+${good.gId}+"&count="+$('#value').val();	
-			}
-			
-			
-			
-		});
-		//立即购买
-		$("#buy").click(function(){
-			//window.location = "ShopServlet?action=buynow&goodsInfoIdStr="+${goodsInfo.id}+"&countStr="+$('#value').val()+"&key="+${key};
-		}); 
-		
-	    $(document).ready(function(){
-	    	var value = Number($('#value').val());
-			var gNum = Number($('#stock').text());
-			if((value+gNum) == 0){
-				//表示该商品已经没货了，改变两个按钮的颜色
-				$("#LikBasket").css("background-color","#bfbfbf");
-				$("#buy").css("background-color","#bfbfbf");
-				$("#buy").css("border-color","#bfbfbf");
-				$("#LikBasket").css("border-color","#bfbfbf");
-				$("#buy").css("color","white");
-			}
-	    });
-	
-</script>
 
 </html>

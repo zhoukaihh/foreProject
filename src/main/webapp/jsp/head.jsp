@@ -20,7 +20,7 @@
 				<ul class="message-r">
 					<div class="topMessage home">
 						<div class="menu-hd">
-							<a href="${pageContext.request.contextPath}/index/findIndexData.action" target="_top" class="h">商城首页</a>
+							<a href="${pageContext.request.contextPath}/shopcar/goToMain" target="_top" class="h">商城首页</a>
 						</div>
 					</div>
 					<div class="topMessage my-shangcheng">

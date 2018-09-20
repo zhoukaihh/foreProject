@@ -181,4 +181,11 @@ public class WareController {
 		
 		return (new StringBuilder("redirect:/goods/list?pageNo=")).append(pageNo).toString();
 	}
+	
+	@RequestMapping("/showGoodById")
+	public String showGoodById(Integer goodId,Model model){
+		WareDto good = wareService.findById(goodId);
+		model.addAttribute("good", good);
+		return "goodInfo";
+	}
 }

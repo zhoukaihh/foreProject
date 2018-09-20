@@ -63,6 +63,30 @@ public class FirstTypeService implements IFirstTypeService {
 		List<FirstTypeDto> dtos = FirstTypeDto.getDtos(pos);
 		return dtos;
 	}
+
+
+
+	@Override
+	public FirstTypeDto findById(Integer firstTypeId) {
+		FirstType po = firstMapper.selectByPrimaryKey(firstTypeId);
+		//查询所有二级
+		SecondTypeExample sce = new SecondTypeExample();
+		sce.createCriteria().andFirstTypeIdEqualTo(po.getFirstTypeId());
+		List<SecondType> scTypes = scMapper.selectByExample(sce);
+		//遍历所有二级
+		for (SecondType secondType : scTypes) {
+			//查询该二级的所有商品
+			WareExample wex = new WareExample();
+			wex.createCriteria().andSecondTypeIdEqualTo(secondType.getSecondTypeId());
+			List<Ware> wares = wareMapper.selectByExample(wex);
+			//添加商品到二级
+			secondType.setWares(wares);
+		}
+		//添加二级到对应一级
+		po.setSecondTypes(scTypes);
+		
+		return new FirstTypeDto(po);
+	}
 	
 
 }

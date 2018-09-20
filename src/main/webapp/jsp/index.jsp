@@ -49,10 +49,10 @@
 							src="${pageContext.request.contextPath}/shoppingImages/${ad.imgPath}" />
 					</a></li>
 				</c:forEach>
-				 <li class="banner1"><a href="introduction.html"><img src="${pageContext.request.contextPath}/images/ad1.jpg" /></a></li>
+				<%-- <li class="banner1"><a href="introduction.html"><img src="${pageContext.request.contextPath}/images/ad1.jpg" /></a></li>
 								<li class="banner2"><a><img src="${pageContext.request.contextPath}/images/ad2.jpg" /></a></li>
 								<li class="banner3"><a><img src="${pageContext.request.contextPath}/images/ad3.jpg" /></a></li>
-								<li class="banner4"><a><img src="${pageContext.request.contextPath}/images/ad4.jpg" /></a></li>
+								<li class="banner4"><a><img src="${pageContext.request.contextPath}/images/ad4.jpg" /></a></li>--%>
 			</ul>
 		</div>
 		
@@ -259,6 +259,8 @@
 					</div>
 				</div>
 			</div>
+			
+			
 			<div class="clear"></div>
 		</div>
 		<script type="text/javascript">
@@ -298,11 +300,12 @@
 					</div>
 					<div class="recommendationMain one">
 						<a href="#"><img
-							src="${pageContext.request.contextPath}/images/"></img></a>
+							src="${pageContext.request.contextPath}/images/cat_ad1.jpg"></img></a>
 					</div>
 				</div>
 			</div>
 			<div class="clear "></div>
+			
 			<!--热门活动 -->
 
 			<div class="am-container activity ">
@@ -372,30 +375,35 @@
 			
 			
 				//实时更新一级分类页面的ajax
-				function loadData(pageNo,gfId) {
+				function loadData(pageNo,firstTypeId) {
 					//获取对象
-					//alert("pageNo:"+pageNo+"---"+"gfId:"+gfId);
+					//alert("pageNo:"+pageNo+"---"+"firstTypeId:"+firstTypeId);
 					 var xmlhttp = getXMLHttpRequest();
 					xmlhttp.onreadystatechange = function() {
 						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 							var text = xmlhttp.responseText;
+							console.log(text);
 						    var jsonObject = JSON.parse(text);
 						    var str = "";
+						    if (jsonArray[i].goods.length > 7) {
+								jsonArray[i].goods.length = 8;
+							}
 							for (var j = 0; j < jsonObject.goods.length; j++) {
 								var good = jsonObject.goods[j];
-								str = str+ "<div class='am-u-sm-7 am-u-md-4 text-two' onclick='showGood("+good.gId+")'>";
+								str = str+ "<div class='am-u-sm-7 am-u-md-4 text-two' onclick='showGood("+good.goodId+")'>";
 								str = str+ "<div class='outer-con '>";
-								str = str+ "<div class='title '>"+ good.gName+ "</div>";
-								str = str+ "<div class='sub-title '>"+ good.gDes+ "</div>";
+								str = str+ "<div class='title '>"+ good.goodName+ "</div>";
+								str = str+ "<div class='sub-title '>"+ good.goodDes+ "</div>";
+								str = str+ "<div class='sub-title '>"+"￥"+ good.goodPrice+ "</div>";
 								str = str+ "<i class='am-icon-shopping-basket am-icon-md  seprate'></i>";
 								str = str+ "</div>";
-								str = str+ "<img src='${pageContext.request.contextPath}/images/"+good.gPhoto+"' style='width: 160px; height: 160px' />";
-								if(good.gNum<1){
+								str = str+ "<img src='${pageContext.request.contextPath}/images/"+good.goodImge+"' style='width: 160px; height: 160px' />";
+								if(good.goodNums<1){
 									str = str+ "<div style='opacity: 0.1;background-size: 100% 100%;background-image:url(${pageContext.request.contextPath}/images/saleout.png); width:240px;height:240px;position:relative;top:-1px;left:-1px;'> </div>";
 								}
 								str = str+"</div>";
 							}
-							$('#goods'+gfId).html(str);
+							$('#goods'+firstTypeId).html(str);
 							
 							
 							var pagestr = "<div style='position: relative; top: 520px; left: 900px;'>";
@@ -404,16 +412,16 @@
 
 							if (!(jsonObject.nowPage == 1)) {
 								pagestr = pagestr
-										+ "<a href='#' onclick='return loadData(1,"+jsonObject.gfId+");' style='text-decoration: none'>首页</a>&nbsp;&nbsp;";
+										+ "<a href='#' onclick='return loadData(1,"+jsonObject.firstTypeId+");' style='text-decoration: none'>首页</a>&nbsp;&nbsp;";
 							}
 
 							if (jsonObject.nowPage > 1) {
 								pagestr = pagestr
-										+ "<a href='#' onclick='return loadData("+(jsonObject.nowPage-1)+","+jsonObject.gfId+");' style='text-decoration: none'>上一页</a>&nbsp;&nbsp;";
+										+ "<a href='#' onclick='return loadData("+(jsonObject.nowPage-1)+","+jsonObject.firstTypeId+");' style='text-decoration: none'>上一页</a>&nbsp;&nbsp;";
 							}
 							if (jsonObject.nowPage < jsonObject.allPage) {
 								pagestr = pagestr
-										+ "<a href='#' onclick='return loadData("+(jsonObject.nowPage+1)+","+jsonObject.gfId+");' style='text-decoration: none'>下一页</a>&nbsp;&nbsp;";
+										+ "<a href='#' onclick='return loadData("+(jsonObject.nowPage+1)+","+jsonObject.firstTypeId+");' style='text-decoration: none'>下一页</a>&nbsp;&nbsp;";
 							}
 
 							if (jsonObject.allPage == 1) {
@@ -429,17 +437,17 @@
 							if (!(jsonObject.nowPage == jsonObject.allPage)
 									&& !(jsonObject.allPage == 0)) {
 								pagestr = pagestr
-										+ " <a href='#' onclick='return loadData("+(jsonObject.allPage)+","+jsonObject.gfId+");' style='text-decoration: none'>尾页</a>";
+										+ " <a href='#' onclick='return loadData("+(jsonObject.allPage)+","+jsonObject.firstTypeId+");' style='text-decoration: none'>尾页</a>";
 							}
 							if(!(jsonObject.allPage==0)){
 								pagestr = pagestr+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='width:80px; height:20px;'>第"+jsonObject.nowPage+"页&nbsp;&nbsp;|&nbsp;&nbsp;共"+jsonObject.allPage+"页</span></div></div>";
 							}
 
-							$('#page'+gfId).html(pagestr);
+							$('#page'+firstTypeId).html(pagestr);
 
 					     }
 					}
-					var url = "${pageContext.request.contextPath}/showGoods/findFirstTypeGoodsOnePageBygfId.action?pageNo="+pageNo+"&gfId="+gfId;
+					var url = "${pageContext.request.contextPath}/showGoods/findFirstTypeGoodsOnePageByfirstTypeId?pageNo="+pageNo+"&firstTypeId="+firstTypeId;
 					xmlhttp.open("get", url);
 					xmlhttp.send();
 					return false;
@@ -450,46 +458,50 @@
 				
 				//写个ajax，得到指定一级分类的指定页的商品，重写指定类的div中的商品数据
 
-				$(document).ready(function() {$.get("${pageContext.request.contextPath}/showGoods/findEveryFirstTypeGoodsOnePage.action",
+				$(document).ready(function() {$.get("${pageContext.request.contextPath}/showGoods/findFTypeGoods",
 													function(data, status) {
 														if (status == 'success') {
-															//alert(data);
+															console.log(data);
 															//jsonArray = eval("("+data+")");
-															var jsonArray = JSON.parse(data.trim());
+															var jsonArray = data;
 															for (var i = 0; i < jsonArray.length; i++) {
 																//一次循环表示一类商品
 																var str = "";
+																if (jsonArray[i].goods.length > 7) {
+																	jsonArray[i].goods.length = 8;
+																}
 																for (var j = 0; j < jsonArray[i].goods.length; j++) {
 																	var good = jsonArray[i].goods[j];
-																	str = str+ "<div class='am-u-sm-7 am-u-md-4 text-two' onclick='showGood("+good.gId+")'>";
+																	str = str+ "<div class='am-u-sm-7 am-u-md-4 text-two' onclick='showGood("+good.goodId+")'>";
 																	str = str+ "<div class='outer-con '>";
-																	str = str+ "<div class='title '>"+ good.gName+ "</div>";
-																	str = str+ "<div class='sub-title '>"+ good.gDes+ "</div>";
+																	str = str+ "<div class='title '>"+ good.goodName+ "</div>";
+																	str = str+ "<div class='sub-title '>"+ good.goodDes+ "</div>";
+																	str = str+ "<div class='sub-title '>"+"￥"+ good.goodPrice+ "</div>";
 																	str = str+ "<i class='am-icon-shopping-basket am-icon-md  seprate'></i>";
 																	str = str+ "</div>";
-																	str = str+ "<img src='${pageContext.request.contextPath}/images/"+good.gPhoto+"' style='width: 160px; height: 160px' />";
-																	if(good.gNum<1){
+																	str = str+ "<img src='${pageContext.request.contextPath}/shoppingImages/"+good.goodImage+"' style='width: 160px; height: 160px' />";
+																	if(good.goodNums<1){
 																		str = str+ "<div style='opacity: 0.1;background-size: 100% 100%;background-image:url(${pageContext.request.contextPath}/images/saleout.png); width:240px;height:240px;position:relative;top:-1px;left:-1px;'> </div>";
 																	}
 																	str = str+"</div>";
 																}
-																$('#goods'+ jsonArray[i].gfId).html(str);
+																$('#goods'+ jsonArray[i].firstTypeId).html(str);
 																var pagestr = "<div style='position: relative; top: 520px; left: 900px;'>";
 																pagestr = pagestr
 																		+ "<div style='height: 20px; width: 300px;'>";
 
 																if (!(jsonArray[i].nowPage == 1)) {
 																	pagestr = pagestr
-																			+ "<a href='#' onclick='return loadData(1,"+jsonArray[i].gfId+");' style='text-decoration: none'>首页</a>&nbsp;&nbsp;";
+																			+ "<a href='#' onclick='return loadData(1,"+jsonArray[i].firstTypeId+");' style='text-decoration: none'>首页</a>&nbsp;&nbsp;";
 																}
 
 																if (jsonArray[i].nowPage > 1) {
 																	pagestr = pagestr
-																			+ "<a href='#' onclick='return loadData("+(jsonArray[i].nowPage-1)+","+jsonArray[i].gfId+");' style='text-decoration: none'>上一页</a>&nbsp;&nbsp;";
+																			+ "<a href='#' onclick='return loadData("+(jsonArray[i].nowPage-1)+","+jsonArray[i].firstTypeId+");' style='text-decoration: none'>上一页</a>&nbsp;&nbsp;";
 																}
 																if (jsonArray[i].nowPage < jsonArray[i].allPage) {
 																	pagestr = pagestr
-																			+ "<a href='#' onclick='return loadData("+(jsonArray[i].nowPage+1)+","+jsonArray[i].gfId+");' style='text-decoration: none'>下一页</a>&nbsp;&nbsp;";
+																			+ "<a href='#' onclick='return loadData("+(jsonArray[i].nowPage+1)+","+jsonArray[i].firstTypeId+");' style='text-decoration: none'>下一页</a>&nbsp;&nbsp;";
 																}
 
 																if (jsonArray[i].allPage == 1) {
@@ -505,14 +517,14 @@
 																if (!(jsonArray[i].nowPage == jsonArray[i].allPage)
 																		&& !(jsonArray[i].allPage == 0)) {
 																	pagestr = pagestr
-																			+ " <a href='#' onclick='return loadData("+(jsonArray[i].allPage)+","+jsonArray[i].gfId+");' style='text-decoration: none'>尾页</a>";
+																			+ " <a href='#' onclick='return loadData("+(jsonArray[i].allPage)+","+jsonArray[i].firstTypeId+");' style='text-decoration: none'>尾页</a>";
 																}
 																if(!(jsonArray[i].allPage==0)){
 																	pagestr = pagestr+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='width:80px; height:20px;'>第"+jsonArray[i].nowPage+"页&nbsp;&nbsp;|&nbsp;&nbsp;共"+jsonArray[i].allPage+"页</span></div></div>";
 																}
 																
 
-																$('#page'+ jsonArray[i].gfId).html(pagestr);
+																$('#page'+ jsonArray[i].firstTypeId).html(pagestr);
 
 															}
 
@@ -523,8 +535,8 @@
 								});
 				
 				
-				function showGood(gId){
-					 window.location.href="${pageContext.request.contextPath}/goods/showGoodById.action?gId="+gId;
+				function showGood(goodId){
+					 window.location.href="${pageContext.request.contextPath}/goods/showGoodById?goodId="+goodId;
 				}
 			</script>
 
@@ -534,19 +546,19 @@
 				<div id="f1">
 					<!--甜点-->
 
-					<div class="am-container " id="firstType${goodFirstType.gfId}">
+					<div class="am-container " id="firstType${goodFirstType.firstTypeId}">
 						<div class="shopTitle ">
-							<h4>${goodFirstType.gfName}</h4>
+							<h4>${goodFirstType.firstTypeName}</h4>
 							<div class="today-brands ">
 								<a href="# "></a>
 							</div>
-							<span class="more "> <a href="# ">更多美味<i
+							<span class="more "> <a href="# ">更多...<i
 									class="am-icon-angle-right" style="padding-left: 10px;"></i></a>
 							</span>
 						</div>
 
 
-						<div id="page${goodFirstType.gfId}"></div>
+						<div id="page${goodFirstType.firstTypeId}"></div>
 
 
 
@@ -596,7 +608,7 @@
 							<div class="triangle-topright"></div>
 						</div>
 
-						<c:forEach items="${goodFirstType.goodSecondTypes}"
+						<c:forEach items="${goodFirstType.secondTypes}"
 							var="goodSecondType">
 
 							<%-- 	<div class="am-u-sm-7 am-u-md-4 text-two">
@@ -610,7 +622,7 @@
 										style="width: 160px; height: 160px" /></a>
 								</div> --%>
 
-							<div id="goods${goodFirstType.gfId}"></div>
+							<div id="goods${goodFirstType.firstTypeId}"></div>
 
 
 						</c:forEach>
@@ -646,7 +658,7 @@
 				class="am-icon-home "></i>首页</a></li>
 		<li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
 		<li><a
-			href="${pageContext.request.contextPath}/shopcar/showCar.action"><i
+			href="${pageContext.request.contextPath}/shopcar/showCar"><i
 				class="am-icon-shopping-basket"></i>购物车</a></li>
 		<li><a href="person/index.html"><i class="am-icon-user"></i>我的</a></li>
 	</div>
@@ -681,7 +693,7 @@
 
 				</div>
 				<div id="shopCart " class="item ">
-					<a href="${pageContext.request.contextPath}/shopcar/showCar.action">
+					<a href="${pageContext.request.contextPath}/shopcar/showCar">
 						<span class="message "></span>
 					</a>
 					<p>购物车</p>

@@ -8,11 +8,42 @@ public class FirstType {
 
     private String firstTypeName;
     
+    private Integer nowPage;
+    
+    private Integer allPage;
+    
+    private List<Ware> goods = new ArrayList<Ware>();
+    
+    
     private List<SecondType> secondTypes = new ArrayList<SecondType>();
     
     
 
-    public List<SecondType> getSecondTypes() {
+    public Integer getNowPage() {
+		return nowPage;
+	}
+
+	public void setNowPage(Integer nowPage) {
+		this.nowPage = nowPage;
+	}
+
+	public Integer getAllPage() {
+		return allPage;
+	}
+
+	public void setAllPage(Integer allPage) {
+		this.allPage = allPage;
+	}
+
+	public List<Ware> getGoods() {
+		return goods;
+	}
+
+	public void setGoods(List<Ware> goods) {
+		this.goods = goods;
+	}
+
+	public List<SecondType> getSecondTypes() {
 		return secondTypes;
 	}
 

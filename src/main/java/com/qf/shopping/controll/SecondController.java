@@ -66,7 +66,7 @@ public class SecondController {
 	public String create(String secondTypeName, Integer firstTypeId) {
 		scService.create(secondTypeName, firstTypeId);
 		
-		return "back/goodstype/goodstype";
+		return "redirect:/goodTypes/list?pageNo=1";
 	}
 
 	/**

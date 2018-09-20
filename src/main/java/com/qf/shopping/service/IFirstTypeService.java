@@ -8,4 +8,6 @@ public interface IFirstTypeService {
 
 	List<FirstTypeDto> findAll();
 
+	FirstTypeDto findById(Integer firstTypeId);
+
 }

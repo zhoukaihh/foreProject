@@ -1,5 +1,6 @@
 package com.qf.shopping.controll;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import com.qf.shopping.dto.FirstTypeDto;
 import com.qf.shopping.dto.UserDto;
 import com.qf.shopping.manager.CacheManager;
 import com.qf.shopping.service.IAdvertismentService;
+import com.qf.shopping.service.IFirstTypeService;
 import com.qf.shopping.service.IUserService;
 
 @Controller
@@ -36,6 +38,10 @@ public class MainController {
 	@Autowired
 	private IAdvertismentService adService;
 	
+	@Autowired
+	private IFirstTypeService ftService;
+	
+	
 	/**
 	 * 前台登陆页面加载
 	 * @param error
@@ -50,7 +56,7 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public String  loginBefor(UserDto dto, HttpServletRequest req,String webpagetype){
+	public String  loginBefor(UserDto dto, HttpServletRequest req,String webpagetype) throws IOException{
 		if ("front".equals(webpagetype)) {
 			String loginType = "";
 			List<String> roleNames = userService.findRoleNameByUser(dto);
@@ -63,17 +69,19 @@ public class MainController {
 						req.getSession().setAttribute("realuser", dto1);
 						
 						//从redis中取出广告信息并放入域对象
-						String ads = cacheManager.getAd();
-						List<AdvertismentDto> ads1 = JSON.parseArray(ads, AdvertismentDto.class);
+						String adsAgain = cacheManager.getAd();
+						List<AdvertismentDto> ads1 = JSON.parseArray(adsAgain, AdvertismentDto.class);
 						req.getSession().setAttribute("ads", ads1);
-						
+						/**
 						//从redis中取出分类信息并放入域对象
-						String firsts = cacheManager.getFirstType();
-						List<FirstTypeDto> firsts1 = JSON.parseArray(firsts, FirstTypeDto.class);
-						for (FirstTypeDto firstTypeDto : firsts1) {
-							System.out.println(firstTypeDto);
-						}
+						String firstsAgain = cacheManager.getFirstType();
+						List<FirstTypeDto> firsts1 = JSON.parseArray(firstsAgain, FirstTypeDto.class);
 						req.getSession().setAttribute("firstTypes", firsts1);
+						*/
+						//查询一级分类
+						List<FirstTypeDto> firstTypes = ftService.findAll();
+						req.getSession().setAttribute("goodFirstTypes", firstTypes);
+						
 						return "index";
 					}
 				}
@@ -82,7 +90,6 @@ public class MainController {
 		
 		return "login";
 	}
-	
 	
 	
 	/**
