@@ -25,38 +25,29 @@ public class MyContextLoadListener implements ServletContextListener {
 	private IAdvertismentService adService;
 	
 	@Autowired
-	private IFirstTypeService fService;
-
+	private IFirstTypeService ftService;
+	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		System.out.println("监听的这里执行了");
 		ApplicationContext context = WebApplicationContextUtils
 				.getRequiredWebApplicationContext(sce.getServletContext());
 		CacheManager cacheManager = context.getBean(CacheManager.class);
-
+		
 		// 判断redis是否有广告的数据
 			
-		try {
-			String ads = cacheManager.getAd();
-			List<AdvertismentDto> dtos = adService.findAll();
-			String jsonString = JSON.toJSONString(dtos);
-			if (ads == null || !ads.equals(jsonString)) {
-				// 如果没有或修改了，就添加
-				cacheManager.putAd(jsonString);
-			}
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
+		List<AdvertismentDto> dtos = adService.findAll();
+		String jsonString = JSON.toJSONString(dtos);
+		// 如果没有或修改了，就添加
+		cacheManager.putAd(jsonString);
 		
-		/**
-	// 判断redis是否有分类的数据
-//		String firsts = cacheManager.getFirstType();
-		List<FirstTypeDto> dtos1 = fService.findAll();
+		
+		// 判断redis是否有分类的数据
+		//String firsts = cacheManager.getFirstType();
+		List<FirstTypeDto> dtos1 = ftService.findAll();
 		String jsonString1 = JSON.toJSONString(dtos1);
-//		if (firsts == null || !firsts.equals(jsonString1)) {
-			// 如果没有或修改了，就添加
-			cacheManager.putFirstType(jsonString1);
-//		}*/
+		// 如果没有或修改了，就添加
+		cacheManager.putFirstType(jsonString1);
 	}
 
 	@Override

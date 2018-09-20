@@ -45,21 +45,21 @@ public class CacheManager {
 		String hget = cluster.hget("ads", "recycleAd");
 		return hget;
 	}
-	/**
+	
 	// 将分类数据 放入Redis
 	public void putFirstType(String firsts) {
 		JedisCluster cluster = getCluster();
 		// 操作集群
-		cluster.hset("first", "firstType", firsts);
+		cluster.hset("firstType", "first", firsts);
 	}
 
 	// 取出分类数据
 	public String getFirstType() {
 		JedisCluster cluster = getCluster();
-		String string = cluster.hget("first", "firstType");
+		String string = cluster.hget("firstType", "first");
 		System.out.println(string);
 		return string;
-	}*/
+	}
 
 	// 将最新最热的商品 放入redis
 

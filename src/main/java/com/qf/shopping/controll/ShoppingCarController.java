@@ -107,18 +107,24 @@ public class ShoppingCarController {
 		return "shopcar";
 	}
 	
+	/**
+	 * 从购物车跳转到主页面
+	 * @param req
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping("/goToMain")
 	public String mian(HttpServletRequest req) throws IOException{
 		//从redis中取出广告信息并放入域对象
 		String adsAgain = cacheManager.getAd();
 		List<AdvertismentDto> ads1 = JSON.parseArray(adsAgain, AdvertismentDto.class);
 		req.getSession().setAttribute("ads", ads1);
-		/**
+		
 		//从redis中取出分类信息并放入域对象
 		String firstsAgain = cacheManager.getFirstType();
 		List<FirstTypeDto> firsts1 = JSON.parseArray(firstsAgain, FirstTypeDto.class);
 		req.getSession().setAttribute("firstTypes", firsts1);
-		*/
+		
 		//查询一级分类
 		List<FirstTypeDto> firstTypes = ftService.findAll();
 		req.getSession().setAttribute("goodFirstTypes", firstTypes);
@@ -126,6 +132,12 @@ public class ShoppingCarController {
 		return "index";
 	}
 	
+	/**
+	 * 删除购物项
+	 * @param goodId
+	 * @param resp
+	 * @throws IOException
+	 */
 	@RequestMapping("removeOneCarItem")
 	public void deleteItem(Integer goodId,HttpServletResponse resp) throws IOException{
 		cacheManager.delete(goodId);

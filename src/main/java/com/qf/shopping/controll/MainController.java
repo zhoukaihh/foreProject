@@ -72,12 +72,12 @@ public class MainController {
 						String adsAgain = cacheManager.getAd();
 						List<AdvertismentDto> ads1 = JSON.parseArray(adsAgain, AdvertismentDto.class);
 						req.getSession().setAttribute("ads", ads1);
-						/**
+						
 						//从redis中取出分类信息并放入域对象
 						String firstsAgain = cacheManager.getFirstType();
 						List<FirstTypeDto> firsts1 = JSON.parseArray(firstsAgain, FirstTypeDto.class);
 						req.getSession().setAttribute("firstTypes", firsts1);
-						*/
+						
 						//查询一级分类
 						List<FirstTypeDto> firstTypes = ftService.findAll();
 						req.getSession().setAttribute("goodFirstTypes", firstTypes);
