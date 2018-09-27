@@ -1,7 +1,6 @@
 package com.qf.shopping.aop;
 
 import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -41,7 +40,7 @@ public class LoggingAdvice {
 	 * ② 在类上使用 @Aspect 注解 使之成为切面类
 	 * 用@Aspect注解方式来实现前置通知、返回通知、后置通知、异常通知、环绕通知（advice）。
 	 */
-
+	//实现后台登陆代理，实现用户行为记录
 	@Before(value = "@annotation(loggingManager)") // 这个注解表示运行时只要有loggingManager这个方法就会执行到这里来
 	public void before(JoinPoint joinPoint, LoggingManager loggingManager) {
 		/**
@@ -58,6 +57,7 @@ public class LoggingAdvice {
 		startTime=new Date();
 	}
 
+	//实现后台登陆代理，实现用户行为记录
 	@After(value = "@annotation(loggingManager)")
 	public void after(JoinPoint joinPoint, LoggingManager loggingManager) {
 		Object[] objects = joinPoint.getArgs();
@@ -76,4 +76,5 @@ public class LoggingAdvice {
 		record.setUserId(dto.getId());
 		uaService.addRecord(record);
 	}
+	
 }

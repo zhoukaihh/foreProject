@@ -90,7 +90,7 @@ $(document).ready(function(){
 						<td>${goodsInfo.secondType.firstType.firstTypeName}/${goodsInfo.secondType.secondTypeName}</td>
 						<td align="center"><img src="${pageContext.request.contextPath}/shoppingImages/${goodsInfo.goodImage}"
 							style="width: 120px; height: 90px;" align="middle" /></td>
-						<td>${goodsInfo.goodDiscountPrice}</td>
+						<td>${goodsInfo.goodPrice}</td>
 						<td><a
 							href="${pageContext.request.contextPath}/goods/update?goodId=${goodsInfo.goodId}&pageNo=${currentpage}"
 							class="tablelink">编辑</a> <a

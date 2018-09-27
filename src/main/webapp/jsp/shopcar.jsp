@@ -49,7 +49,7 @@
 					</div>
 					<div class="th th-item">
 						<div class="td-inner">商品信息</div>
-                        <span style="position: relative; top:-50px; left:340px; width:80px; height: 20px;">商品库存</span>
+						<span style="position: relative; top:-50px; left:340px; width:80px; height: 20px;">商品库存</span>
 					</div>
 
 					<div class="th th-price">
@@ -117,9 +117,10 @@
 										</div>
 									</div>
 								</li>
+								 
 								<li class="td td-info">
 									<div class="item-props item-props-can" style=" border:0px;">
-                                           <span id="goodNums${itemNum}" style="position:relative; top:35px; left:13px;">${shopCartItem.good.goodNums}</span><span id="nomore" style="color:red; width: 30px;height: 10px;position:relative; top:35px; left:33px;"></span>
+                                           <span  id="goodNums${itemNum}" style="position:relative; top:35px; left:13px;">${shopCartItem.good.goodNums}</span><span id="nomore" style="color:red; width: 30px;height: 10px;position:relative; top:35px; left:33px;"></span>
 										<i class="theme-login am-icon-sort-desc"></i>
 									</div>
 								</li>
@@ -131,7 +132,7 @@
 													</div>
 														
 													<div class="price-line">
-														<em id="goodDiscountPrice${itemNum}" class="J_Price price-now" tabindex="0">${shopCartItem.good.goodDiscountPrice}</em>
+														<em id="goodPrice${itemNum}" class="J_Price price-now" tabindex="0">${shopCartItem.good.goodPrice}</em>
 													</div>
 										</div>
 									</div>
@@ -360,14 +361,14 @@
         	 $("#nomore").text("");
         	  $("#countStr"+itemNum).val(nowItemNum);
         	  //获取该商品的卖价
-       	      var goodDiscountPrice = $("#goodDiscountPrice"+itemNum).text();
+       	      var goodPrice = $("#goodPrice"+itemNum).text();
         	  //改变该项的总价
         	  var itemPrice = $("#itemprice"+itemNum).text();
         	  //设置改变后的单项总价
-        	  $("#itemprice"+itemNum).text(numAdd(Number(itemPrice),(numMul(Number(goodDiscountPrice),Number(changeNum)))).toFixed(2));
+        	  $("#itemprice"+itemNum).text(numAdd(Number(itemPrice),(numMul(Number(goodPrice),Number(changeNum)))).toFixed(2));
         	  //获取购物车原先的总价
         	  var oldAllPrice = $("#allPrice").text();
-    		  $("#allPrice").text(numAdd(Number(oldAllPrice),(numMul(Number(goodDiscountPrice),Number(changeNum)))).toFixed(2));
+    		  $("#allPrice").text(numAdd(Number(oldAllPrice),(numMul(Number(goodPrice),Number(changeNum)))).toFixed(2));
         	  //改变购物车商品总数
     		  var oldAllSize = $("#goodAllSize").text();
     		  $("#goodAllSize").text(numAdd(Number(oldAllSize),Number(changeNum))); 
@@ -384,11 +385,11 @@
 	   //获取该商品的库存
 	   var goodNums = $("#goodNums"+itemNum).text();
 	  //获取该商品的卖价
-	   var goodDiscountPrice = $("#goodDiscountPrice"+itemNum).text();
+	   var goodPrice = $("#goodPrice"+itemNum).text();
 	   //获取之前它的总价
 	   var itemPrice = $("#itemprice"+itemNum).text();
 	   //计算之前它的数量
-	   var oldCount = numDiv(itemPrice,goodDiscountPrice);
+	   var oldCount = numDiv(itemPrice,goodPrice);
 	  
 	   //得到它现在的数量
 	   var nowCount =Number($("#countStr"+itemNum).val());
@@ -405,14 +406,14 @@
 		   //合法的改变，开始更新各值
 		   $("#nomore").text("");
 		   //更新该项商品总价
-		   var nowItemPrice = numDec(itemPrice,(numMul(goodDiscountPrice,numDec(oldCount,nowCount))));
+		   var nowItemPrice = numDec(itemPrice,(numMul(goodPrice,numDec(oldCount,nowCount))));
 		   
 		   $("#itemprice"+itemNum).text(nowItemPrice.toFixed(2));
 		   //更新购物车商品总数
 		   var nowAllCount = numDec(Number(oldAllSize),numDec(oldCount,nowCount));
 		   $("#goodAllSize").text(nowAllCount);
 		   //更新购物车总价
-		   var nowAllPrice = numDec(oldAllPrice,(numMul(goodDiscountPrice,numDec(oldCount,nowCount))));
+		   var nowAllPrice = numDec(oldAllPrice,(numMul(goodPrice,numDec(oldCount,nowCount))));
 		   $("#allPrice").text(nowAllPrice.toFixed(2));   
 	   } 
    }
@@ -498,7 +499,7 @@
 		 }  
 	  }   
 	  //强制使form表单提交
-	   $("#carForm").attr("action","${pageContext.request.contextPath}/shopcar/goPay.action");
+	   $("#carForm").attr("action","${pageContext.request.contextPath}/shopcar/goPay");
 	   $("#carForm").submit();
    }
   

@@ -143,4 +143,7 @@ public class ShoppingCarController {
 		cacheManager.delete(goodId);
 		resp.getWriter().write("removeOK");
 	}
+	
+	
+	
 }

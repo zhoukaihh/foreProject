@@ -1,5 +1,6 @@
 package com.qf.shopping.service.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
+import com.alibaba.fastjson.JSON;
+import com.qf.shopping.dto.AdvertismentDto;
+import com.qf.shopping.dto.FirstTypeDto;
 import com.qf.shopping.dto.UserDto;
+import com.qf.shopping.manager.CacheManager;
 import com.qf.shopping.mapper.RoleMapper;
 import com.qf.shopping.mapper.UserMapper;
 import com.qf.shopping.mapper.UserRoleMapper;
@@ -21,6 +26,7 @@ import com.qf.shopping.pojo.User;
 import com.qf.shopping.pojo.UserExample;
 import com.qf.shopping.pojo.UserRoleExample;
 import com.qf.shopping.pojo.UserRoleKey;
+import com.qf.shopping.service.IFirstTypeService;
 import com.qf.shopping.service.IUserService;
 import com.qf.shopping.util.SSMUtil;
 
@@ -38,6 +44,12 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private RoleMapper roleMapper = null;
+
+	@Autowired
+	private CacheManager cacheManager;
+
+	@Autowired
+	private IFirstTypeService ftService;
 
 	/**
 	 * 查询所有用户
@@ -109,13 +121,43 @@ public class UserService implements IUserService {
 				// 判断用户的角色权限并且设置到域对象中
 				if (roleNames.contains(loginType)) {
 					req.getSession().setAttribute("loginType", loginType);
-					u.setPassword("");
+
 					return new UserDto(u);
 				}
 			}
-			return dto;
 		}
+		dto.setPassword("");
 		return dto;
+	}
+
+	/**
+	 * 这个是免登陆符合条件后设置首页需要的数据
+	 * 
+	 * @param req
+	 * @param user
+	 * @return
+	 */
+	public void beforeRequireSeting(HttpServletRequest request) {
+
+		// 从redis中取出广告信息并放入域对象
+		try {
+			String adsAgain = cacheManager.getAd();
+
+			List<AdvertismentDto> ads1 = JSON.parseArray(adsAgain, AdvertismentDto.class);
+			request.getSession().setAttribute("ads", ads1);
+
+			// 从redis中取出分类信息并放入域对象
+			String firstsAgain = cacheManager.getFirstType();
+			List<FirstTypeDto> firsts1 = JSON.parseArray(firstsAgain, FirstTypeDto.class);
+			request.getSession().setAttribute("firstTypes", firsts1);
+
+			// 查询一级分类
+			List<FirstTypeDto> firstTypes = ftService.findAll();
+			request.getSession().setAttribute("goodFirstTypes", firstTypes);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -152,7 +194,7 @@ public class UserService implements IUserService {
 		// 密码MD5
 		String md5 = SSMUtil.getMD5(po.getLoginName(), po.getPassword());
 		String newMd5 = md5.replaceAll("=", "");
-		logger.info("创建的密码："+newMd5);
+		logger.info("创建的密码：" + newMd5);
 		po.setPassword(newMd5);
 		userMapper.updateByPrimaryKey(po);
 	}

@@ -36,4 +36,6 @@ public interface IUserService {
 	List<UserRoleKey> findUserRoleKey(Integer id);
 
 	List<String> findRoleNameByUser(UserDto dto);
+
+	void beforeRequireSeting(HttpServletRequest request);
 }

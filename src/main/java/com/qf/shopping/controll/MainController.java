@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.alibaba.fastjson.JSON;
+import com.qf.shopping.annotation.BeforLoginManager;
+import com.qf.shopping.annotation.BeforeRequirManager;
 import com.qf.shopping.annotation.LoggingManager;
 import com.qf.shopping.dto.AdvertismentDto;
 import com.qf.shopping.dto.FirstTypeDto;
@@ -49,23 +53,38 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping(value="/login",method=RequestMethod.GET)
+	@BeforeRequirManager(description="前台访问请求")
 	public String loginBefore(String error, Map<String, Object>map){
 		map.put("error", error);
 		logger.info("赐我前台登陆页面吧！");
-		return "login";
+		return "index";
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public String  loginBefor(UserDto dto, HttpServletRequest req,String webpagetype) throws IOException{
+	public String  loginBefor(UserDto dto, HttpServletRequest req,HttpServletResponse resp,String webpagetype) throws IOException{
+		//是否为前台登陆请求
 		if ("front".equals(webpagetype)) {
 			String loginType = "";
+			//查询该用户角色
 			List<String> roleNames = userService.findRoleNameByUser(dto);
 			for (String roleName : roleNames) {
 				if ("vip".equals(roleName)) {
 					loginType=roleName;
 					UserDto dto1 = userService.authenticate(req,dto,loginType);
 					//判断是否可以登录
-					if ("".equals(dto1.getPassword())) {
+					if (!"".equals(dto1.getPassword())) {
+						//进来了就表示验证成功，可以登录
+						
+						//设置session的信息到redis中去
+						String sessionId = req.getSession().getId();
+						String user = JSON.toJSONString(dto1);
+						cacheManager.putSessionId(sessionId, user);
+						
+						//设置cookie
+						Cookie cookie = new Cookie("token", sessionId);
+						cookie.setMaxAge(2592000);
+						resp.addCookie(cookie);
+						//设置首页需要的数据
 						req.getSession().setAttribute("realuser", dto1);
 						
 						//从redis中取出广告信息并放入域对象
@@ -112,7 +131,7 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping(value="/backLogin",method=RequestMethod.POST)
-	@LoggingManager(description="进行登陆")
+	@LoggingManager(description="进行管理登陆")
 	public String login(UserDto user , HttpServletRequest req,String webpagetype,String loginType){
 		
 		if ("back".equals(webpagetype)) {
@@ -126,6 +145,9 @@ public class MainController {
 		return "back/error";
 	}
 	
+	/**
+	 * 后台退出系统
+	 */
 	@RequestMapping(value="/logout")
 	public String logout(String loginType ,HttpServletRequest req,SessionStatus status){
 		HttpSession session = req.getSession();

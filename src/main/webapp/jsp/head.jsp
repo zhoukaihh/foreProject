@@ -60,7 +60,7 @@
 
 					<div class="search-bar pr">
 						<a name="index_none_header_sysc" href="#"></a>
-						<form action="${pageContext.request.contextPath}/goods/searchGoods.action">
+						<form action="${pageContext.request.contextPath}/goods/searchGoods" method="post">
 						    <input id="pageNo" type="hidden" name="pageNo" value="1">
 							<input id="searchInput" name="searchInfo" type="text" placeholder="搜索" autocomplete="off">
 							<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">

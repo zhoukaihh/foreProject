@@ -91,4 +91,17 @@ public class CacheManager {
 			cluster.hdel("shopCar", goodIdString);
 			
 		}
+		
+		
+		//将sessionId放入redis，免登陆使用
+		public void putSessionId(String sessionId,String user){
+			JedisCluster cluster = getCluster();
+			cluster.hset("session", sessionId, user);
+		}
+		//将对应的sessionId信息查询出来，提供给登陆验证
+		public String getSessionId(String sessionId){
+			JedisCluster cluster = getCluster();
+			String hget = cluster.hget("session", sessionId);
+			return hget;
+		}
 }
