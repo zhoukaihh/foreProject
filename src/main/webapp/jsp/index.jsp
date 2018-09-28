@@ -238,8 +238,11 @@
 								</em>
 							</div>
 							<div class="member-logout">
-								<a class="am-btn-warning btn" href="login.html">登录</a> <a
-									class="am-btn-warning btn" href="register.html">注册</a>
+								<c:if test="${empty realuser}">
+									<a class="am-btn-warning btn" href="${pageContext.request.contextPath}/userLogin">登录</a>	
+								</c:if>
+								 <a class="am-btn-warning btn" href="${pageContext.request.contextPath}/userLogin">您好！</a>
+								<a class="am-btn-warning btn" href="register.html">注册</a>
 							</div>
 							<div class="member-login">
 								<a href="#"><strong>0</strong>待收货</a> <a href="#"><strong>0</strong>待发货</a>

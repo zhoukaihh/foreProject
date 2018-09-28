@@ -1,4 +1,4 @@
-<%@page import="com.jzh.shopping.pojo.Address"%>
+<%@page import="com.qf.shopping.pojo.Address"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

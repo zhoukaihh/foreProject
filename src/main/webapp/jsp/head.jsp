@@ -44,7 +44,7 @@
 						<div class="menu-hd">
 							<a href="${pageContext.request.contextPath}/collection.jsp" target="_top">
 								<i class="am-icon-heart am-icon-fw"></i>
-								<span><a href="${pageContext.request.contextPath}/go/goawaybefore.action">注销帐户</a></span>
+								<span><a href="${pageContext.request.contextPath}/goawaybefore">注销帐户</a></span>
 							</a>
 						</div>
 				</ul>

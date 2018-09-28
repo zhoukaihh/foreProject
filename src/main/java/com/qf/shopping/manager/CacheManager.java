@@ -9,6 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+
+import com.alibaba.fastjson.JSON;
+
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 
@@ -96,12 +99,13 @@ public class CacheManager {
 		//将sessionId放入redis，免登陆使用
 		public void putSessionId(String sessionId,String user){
 			JedisCluster cluster = getCluster();
-			cluster.hset("session", sessionId, user);
+			
+			cluster.set(sessionId, user);
 		}
 		//将对应的sessionId信息查询出来，提供给登陆验证
-		public String getSessionId(String sessionId){
+		public String getSessionId(String cookieValue){
 			JedisCluster cluster = getCluster();
-			String hget = cluster.hget("session", sessionId);
+			String hget = cluster.get(cookieValue);
 			return hget;
 		}
 }
