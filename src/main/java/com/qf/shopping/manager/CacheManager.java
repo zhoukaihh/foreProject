@@ -67,11 +67,11 @@ public class CacheManager {
 	// 将最新最热的商品 放入redis
 
  
-	//将购物车的信息放到redis里面
-	public void putShopCar(String shopCar,Integer goodId){
+	//将要放入购物车的商品的信息放到redis里面
+	public void putShopCar(String itemString,Integer goodId){
 		JedisCluster cluster = getCluster();
 		String goodIdString = goodId.toString();
-		cluster.hset("shopCar",goodIdString, shopCar);
+		cluster.hset("shopCar",goodIdString, itemString);
 	} 
 	
 	//将购物车的信息全部取出来
@@ -84,7 +84,8 @@ public class CacheManager {
 		public String getTheShopCar(Integer goodId){
 			JedisCluster cluster = getCluster();
 			String goodIdString = goodId.toString();
-			return cluster.hget("shopCar", goodIdString);
+			String hget = cluster.hget("shopCar", goodIdString);
+			return hget;
 		}
 		
 	//从购物车删除指定商品
@@ -92,7 +93,6 @@ public class CacheManager {
 			JedisCluster cluster = getCluster();
 			String goodIdString = goodId.toString();
 			cluster.hdel("shopCar", goodIdString);
-			
 		}
 		
 		
@@ -108,4 +108,5 @@ public class CacheManager {
 			String hget = cluster.get(cookieValue);
 			return hget;
 		}
+		
 }

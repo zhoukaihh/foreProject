@@ -56,11 +56,10 @@ $(function(){
 					<li><cite></cite><a
 						href="${pageContext.request.contextPath}/permitions/list"
 						target="rightFrame">权限管理</a><i></i></li>
+					<li><cite></cite><a
+						href="${pageContext.request.contextPath}/users/list"
+						target="rightFrame">用户管理</a><i></i></li>
 				</auth:hasRole>
-				<li><cite></cite><a
-					href="${pageContext.request.contextPath}/users/list"
-					target="rightFrame">用户管理</a><i></i></li>
-
 				<li class="active"><cite></cite><a
 					href="${pageContext.request.contextPath}/goodTypes/list?pageNo=1" target="rightFrame">商品类别管理</a><i></i></li>
 				<li><cite></cite><a

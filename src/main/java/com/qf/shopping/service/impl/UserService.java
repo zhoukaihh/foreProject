@@ -88,7 +88,7 @@ public class UserService implements IUserService {
 	 * 登陆验证，包括角色权限验证
 	 */
 	@Override
-	public UserDto authenticate(HttpServletRequest req, UserDto dto, String loginType) {
+	public UserDto authenticate(HttpServletRequest req, UserDto dto,String loginType,Model model) {
 		// 根据登陆名获取用户信息
 		UserExample ue = new UserExample();
 		ue.createCriteria().andLoginNameEqualTo(dto.getLoginName());
@@ -120,10 +120,12 @@ public class UserService implements IUserService {
 			if (newMd5.equals(u.getPassword())) {
 				// 判断用户的角色权限并且设置到域对象中
 				if (roleNames.contains(loginType)) {
+					logger.info(loginType);
 					req.getSession().setAttribute("loginType", loginType);
 
 					return new UserDto(u);
 				}
+				
 			}
 		}
 		dto.setPassword("");

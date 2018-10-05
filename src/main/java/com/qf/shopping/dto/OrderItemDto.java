@@ -29,6 +29,8 @@ public class OrderItemDto {
 
     private Integer orderId;
     
+    private String _version;
+    
     private Ware ware;
     
     private Order order;
@@ -50,7 +52,18 @@ public class OrderItemDto {
 		this.order=po.getOrder();
 		this.orderId=po.getOrderId();
 		this.orderItemId=po.getOrderItemId();
+		this._version=po.get_version();
 		this.ware=po.getWare();
+	}
+
+	
+	
+	public String get_version() {
+		return _version;
+	}
+
+	public void set_version(String _version) {
+		this._version = _version;
 	}
 
 	public Integer getOrderItemId() {

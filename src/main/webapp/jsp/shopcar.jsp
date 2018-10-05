@@ -179,12 +179,6 @@
 		<div class="clear"></div>
 
 		<div class="float-bar-wrapper">
-		   
-		            <div class="btn-area" style="position: relative; left:514px; border-radius:7px;">
-					   <a href="#" id="J_Go" class="submit-btn submit-btn-disabled"
-						aria-label="" onclick="return saveCar();"> <span>保存购物车</span></a>
-				    </div>
-				 
 		        
 			<div class="float-bar-right">
 			    
@@ -418,14 +412,6 @@
 	   } 
    }
    
-   function saveCar(){
-	   
-        //强制使form表单提交
-        $("#carForm").submit();
-        return false;
-	   
-   }
-   
    function beCheck(itemNum){
 	   //得到多选框
 	   var checkbox = $("#check"+itemNum);
@@ -504,6 +490,7 @@
    }
   
    return false;
-  }
+   
+ }
  </script>
 </html>

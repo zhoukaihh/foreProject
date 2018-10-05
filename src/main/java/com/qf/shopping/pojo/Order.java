@@ -1,10 +1,7 @@
 package com.qf.shopping.pojo;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Order {
     private Integer orderId;
@@ -13,8 +10,7 @@ public class Order {
 
     private String state;
 
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", locale = "zh", timezone="GMT+8")
-    private Date orderTime;
+    private String orderTime;
 
     private Float orderTotalMoney;
 
@@ -32,26 +28,27 @@ public class Order {
 
     private Integer flag;
     
+    
     private User user;
-    
-    private List<OrderItem> orderItems= new ArrayList<OrderItem>();
-    
-    
+	
+	private List<OrderItem> orderItems= new ArrayList<OrderItem>();
+	
+	
 
-    public List<OrderItem> getOrderItems() {
-		return orderItems;
-	}
-
-	public void setOrderItems(List<OrderItem> orderItems) {
-		this.orderItems = orderItems;
-	}
-
-	public User getUser() {
+    public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
+	}
+
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
 	}
 
 	public Integer getOrderId() {
@@ -78,12 +75,12 @@ public class Order {
         this.state = state == null ? null : state.trim();
     }
 
-    public Date getOrderTime() {
+    public String getOrderTime() {
         return orderTime;
     }
 
-    public void setOrderTime(Date orderTime) {
-        this.orderTime = orderTime;
+    public void setOrderTime(String orderTime) {
+        this.orderTime = orderTime == null ? null : orderTime.trim();
     }
 
     public Float getOrderTotalMoney() {

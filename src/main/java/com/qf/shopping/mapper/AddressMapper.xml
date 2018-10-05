@@ -4,6 +4,8 @@
   <resultMap id="BaseResultMap" type="com.qf.shopping.pojo.Address" >
     <id column="addId" property="addId" jdbcType="INTEGER" />
     <result column="addDetail" property="addDetail" jdbcType="VARCHAR" />
+    <result column="addContactPhone" property="addContactPhone" jdbcType="VARCHAR" />
+    <result column="addContactName" property="addContactName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    addId, addDetail
+    addId, addDetail, addContactPhone, addContactName
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.shopping.pojo.AddressExample" >
     select
@@ -98,8 +100,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.qf.shopping.pojo.Address" >
-    insert into t_add (addId, addDetail)
-    values (#{addId,jdbcType=INTEGER}, #{addDetail,jdbcType=VARCHAR})
+    insert into t_add (addId, addDetail, addContactPhone, 
+      addContactName)
+    values (#{addId,jdbcType=INTEGER}, #{addDetail,jdbcType=VARCHAR}, #{addContactPhone,jdbcType=VARCHAR}, 
+      #{addContactName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qf.shopping.pojo.Address" >
     insert into t_add
@@ -110,6 +114,12 @@
       <if test="addDetail != null" >
         addDetail,
       </if>
+      <if test="addContactPhone != null" >
+        addContactPhone,
+      </if>
+      <if test="addContactName != null" >
+        addContactName,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="addId != null" >
@@ -117,6 +127,12 @@
       </if>
       <if test="addDetail != null" >
         #{addDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="addContactPhone != null" >
+        #{addContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="addContactName != null" >
+        #{addContactName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -135,6 +151,12 @@
       <if test="record.addDetail != null" >
         addDetail = #{record.addDetail,jdbcType=VARCHAR},
       </if>
+      <if test="record.addContactPhone != null" >
+        addContactPhone = #{record.addContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addContactName != null" >
+        addContactName = #{record.addContactName,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -143,7 +165,9 @@
   <update id="updateByExample" parameterType="map" >
     update t_add
     set addId = #{record.addId,jdbcType=INTEGER},
-      addDetail = #{record.addDetail,jdbcType=VARCHAR}
+      addDetail = #{record.addDetail,jdbcType=VARCHAR},
+      addContactPhone = #{record.addContactPhone,jdbcType=VARCHAR},
+      addContactName = #{record.addContactName,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -154,12 +178,20 @@
       <if test="addDetail != null" >
         addDetail = #{addDetail,jdbcType=VARCHAR},
       </if>
+      <if test="addContactPhone != null" >
+        addContactPhone = #{addContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="addContactName != null" >
+        addContactName = #{addContactName,jdbcType=VARCHAR},
+      </if>
     </set>
     where addId = #{addId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qf.shopping.pojo.Address" >
     update t_add
-    set addDetail = #{addDetail,jdbcType=VARCHAR}
+    set addDetail = #{addDetail,jdbcType=VARCHAR},
+      addContactPhone = #{addContactPhone,jdbcType=VARCHAR},
+      addContactName = #{addContactName,jdbcType=VARCHAR}
     where addId = #{addId,jdbcType=INTEGER}
   </update>
 </mapper>

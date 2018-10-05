@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
@@ -47,7 +48,6 @@ public class MainController {
 
 	/**
 	 * 前台登陆页面加载
-	 * 
 	 * @param error
 	 * @param map
 	 * @return
@@ -60,13 +60,26 @@ public class MainController {
 		return "index";
 	}
 
+	/**
+	 * 免登陆处跳转到登陆页面
+	 * @return
+	 */
 	@RequestMapping("/userLogin")
 	public String userLogin() {
 		return "login";
 	}
 
+	/**
+	 * 前台登陆
+	 * @param dto
+	 * @param req
+	 * @param resp
+	 * @param webpagetype
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginBefor(UserDto dto, HttpServletRequest req, HttpServletResponse resp, String webpagetype)
+	public String loginBefor(UserDto dto, HttpServletRequest req, HttpServletResponse resp, String webpagetype,Model model)
 			throws IOException {
 		// 是否为前台登陆请求
 		if ("front".equals(webpagetype)) {
@@ -76,7 +89,7 @@ public class MainController {
 			for (String roleName : roleNames) {
 				if ("vip".equals(roleName)) {
 					loginType = roleName;
-					UserDto dto1 = userService.authenticate(req, dto, loginType);
+					UserDto dto1 = userService.authenticate(req, dto,loginType,model);
 					// 判断是否可以登录
 					if (!"".equals(dto1.getPassword())) {
 						// 进来了就表示验证成功，可以登录
@@ -119,7 +132,6 @@ public class MainController {
 
 	/**
 	 * 前台注销账户
-	 * 
 	 * @param req
 	 * @return
 	 */
@@ -136,7 +148,6 @@ public class MainController {
 
 	/**
 	 * 后台登录页面加载
-	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/backLogin", method = RequestMethod.GET)
@@ -148,7 +159,6 @@ public class MainController {
 
 	/**
 	 * 请求后台登陆 在这里使用自定义注解@logginManager来将登陆方法设置成为AspectJ切入的连接点
-	 * 
 	 * @param user
 	 * @param req
 	 * @param webpagetype
@@ -156,11 +166,11 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/backLogin", method = RequestMethod.POST)
 	@LoggingManager(description = "进行管理登陆")
-	public String login(UserDto user, HttpServletRequest req, String webpagetype, String loginType) {
+	public String login(UserDto user, HttpServletRequest req, String webpagetype,String loginType,Model model) {
 
 		if ("back".equals(webpagetype)) {
-			UserDto dto = userService.authenticate(req, user, loginType);
-			if ("".equals(dto.getPassword())) {
+			UserDto dto = userService.authenticate(req, user,loginType,model);
+			if (!"".equals(dto.getPassword())) {
 				req.getSession().setAttribute("backUser", dto);
 				return "back/main";
 			}

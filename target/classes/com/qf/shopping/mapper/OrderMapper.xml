@@ -5,7 +5,7 @@
     <id column="orderId" property="orderId" jdbcType="INTEGER" />
     <result column="orderNum" property="orderNum" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="VARCHAR" />
-    <result column="orderTime" property="orderTime" jdbcType="DATE" />
+    <result column="orderTime" property="orderTime" jdbcType="VARCHAR" />
     <result column="orderTotalMoney" property="orderTotalMoney" jdbcType="REAL" />
     <result column="usreId" property="usreId" jdbcType="INTEGER" />
     <result column="orderSendType" property="orderSendType" jdbcType="VARCHAR" />
@@ -115,7 +115,7 @@
       orderShPeople, oderShTel, flag
       )
     values (#{orderId,jdbcType=INTEGER}, #{orderNum,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
-      #{orderTime,jdbcType=DATE}, #{orderTotalMoney,jdbcType=REAL}, #{usreId,jdbcType=INTEGER}, 
+      #{orderTime,jdbcType=VARCHAR}, #{orderTotalMoney,jdbcType=REAL}, #{usreId,jdbcType=INTEGER}, 
       #{orderSendType,jdbcType=VARCHAR}, #{orderPayType,jdbcType=VARCHAR}, #{orderShAddress,jdbcType=VARCHAR}, 
       #{orderShPeople,jdbcType=VARCHAR}, #{oderShTel,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}
       )
@@ -171,7 +171,7 @@
         #{state,jdbcType=VARCHAR},
       </if>
       <if test="orderTime != null" >
-        #{orderTime,jdbcType=DATE},
+        #{orderTime,jdbcType=VARCHAR},
       </if>
       <if test="orderTotalMoney != null" >
         #{orderTotalMoney,jdbcType=REAL},
@@ -218,7 +218,7 @@
         state = #{record.state,jdbcType=VARCHAR},
       </if>
       <if test="record.orderTime != null" >
-        orderTime = #{record.orderTime,jdbcType=DATE},
+        orderTime = #{record.orderTime,jdbcType=VARCHAR},
       </if>
       <if test="record.orderTotalMoney != null" >
         orderTotalMoney = #{record.orderTotalMoney,jdbcType=REAL},
@@ -254,7 +254,7 @@
     set orderId = #{record.orderId,jdbcType=INTEGER},
       orderNum = #{record.orderNum,jdbcType=VARCHAR},
       state = #{record.state,jdbcType=VARCHAR},
-      orderTime = #{record.orderTime,jdbcType=DATE},
+      orderTime = #{record.orderTime,jdbcType=VARCHAR},
       orderTotalMoney = #{record.orderTotalMoney,jdbcType=REAL},
       usreId = #{record.usreId,jdbcType=INTEGER},
       orderSendType = #{record.orderSendType,jdbcType=VARCHAR},
@@ -277,7 +277,7 @@
         state = #{state,jdbcType=VARCHAR},
       </if>
       <if test="orderTime != null" >
-        orderTime = #{orderTime,jdbcType=DATE},
+        orderTime = #{orderTime,jdbcType=VARCHAR},
       </if>
       <if test="orderTotalMoney != null" >
         orderTotalMoney = #{orderTotalMoney,jdbcType=REAL},
@@ -310,7 +310,7 @@
     update t_order
     set orderNum = #{orderNum,jdbcType=VARCHAR},
       state = #{state,jdbcType=VARCHAR},
-      orderTime = #{orderTime,jdbcType=DATE},
+      orderTime = #{orderTime,jdbcType=VARCHAR},
       orderTotalMoney = #{orderTotalMoney,jdbcType=REAL},
       usreId = #{usreId,jdbcType=INTEGER},
       orderSendType = #{orderSendType,jdbcType=VARCHAR},

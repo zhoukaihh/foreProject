@@ -12,6 +12,7 @@
     <result column="buyNum" property="buyNum" jdbcType="INTEGER" />
     <result column="itemTotal" property="itemTotal" jdbcType="VARCHAR" />
     <result column="orderId" property="orderId" jdbcType="INTEGER" />
+    <result column="_version" property="_version" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List" >
     orderItemId, goodId, goodName, goodDes, goodNums, goodPrice, goodImage, buyNum, itemTotal, 
-    orderId
+    orderId, _version
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.shopping.pojo.OrderItemExample" >
     select
@@ -110,11 +111,11 @@
     insert into t_orderitem (orderItemId, goodId, goodName, 
       goodDes, goodNums, goodPrice, 
       goodImage, buyNum, itemTotal, 
-      orderId)
+      orderId, _version)
     values (#{orderItemId,jdbcType=INTEGER}, #{goodId,jdbcType=INTEGER}, #{goodName,jdbcType=VARCHAR}, 
       #{goodDes,jdbcType=VARCHAR}, #{goodNums,jdbcType=VARCHAR}, #{goodPrice,jdbcType=REAL}, 
       #{goodImage,jdbcType=VARCHAR}, #{buyNum,jdbcType=INTEGER}, #{itemTotal,jdbcType=VARCHAR}, 
-      #{orderId,jdbcType=INTEGER})
+      #{orderId,jdbcType=INTEGER}, #{_version,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qf.shopping.pojo.OrderItem" >
     insert into t_orderitem
@@ -149,6 +150,9 @@
       <if test="orderId != null" >
         orderId,
       </if>
+      <if test="_version != null" >
+        _version,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="orderItemId != null" >
@@ -180,6 +184,9 @@
       </if>
       <if test="orderId != null" >
         #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="_version != null" >
+        #{_version,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -222,6 +229,9 @@
       <if test="record.orderId != null" >
         orderId = #{record.orderId,jdbcType=INTEGER},
       </if>
+      <if test="record._version != null" >
+        _version = #{record._version,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -238,7 +248,8 @@
       goodImage = #{record.goodImage,jdbcType=VARCHAR},
       buyNum = #{record.buyNum,jdbcType=INTEGER},
       itemTotal = #{record.itemTotal,jdbcType=VARCHAR},
-      orderId = #{record.orderId,jdbcType=INTEGER}
+      orderId = #{record.orderId,jdbcType=INTEGER},
+      _version = #{record._version,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -273,6 +284,9 @@
       <if test="orderId != null" >
         orderId = #{orderId,jdbcType=INTEGER},
       </if>
+      <if test="_version != null" >
+        _version = #{_version,jdbcType=VARCHAR},
+      </if>
     </set>
     where orderItemId = #{orderItemId,jdbcType=INTEGER}
   </update>
@@ -286,7 +300,8 @@
       goodImage = #{goodImage,jdbcType=VARCHAR},
       buyNum = #{buyNum,jdbcType=INTEGER},
       itemTotal = #{itemTotal,jdbcType=VARCHAR},
-      orderId = #{orderId,jdbcType=INTEGER}
+      orderId = #{orderId,jdbcType=INTEGER},
+      _version = #{_version,jdbcType=VARCHAR}
     where orderItemId = #{orderItemId,jdbcType=INTEGER}
   </update>
 </mapper>

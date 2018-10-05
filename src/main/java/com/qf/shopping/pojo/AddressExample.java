@@ -233,6 +233,146 @@ public class AddressExample {
             addCriterion("addDetail not between", value1, value2, "addDetail");
             return (Criteria) this;
         }
+
+        public Criteria andAddContactPhoneIsNull() {
+            addCriterion("addContactPhone is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactPhoneIsNotNull() {
+            addCriterion("addContactPhone is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactPhoneEqualTo(String value) {
+            addCriterion("addContactPhone =", value, "addContactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactPhoneNotEqualTo(String value) {
+            addCriterion("addContactPhone <>", value, "addContactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactPhoneGreaterThan(String value) {
+            addCriterion("addContactPhone >", value, "addContactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactPhoneGreaterThanOrEqualTo(String value) {
+            addCriterion("addContactPhone >=", value, "addContactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactPhoneLessThan(String value) {
+            addCriterion("addContactPhone <", value, "addContactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactPhoneLessThanOrEqualTo(String value) {
+            addCriterion("addContactPhone <=", value, "addContactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactPhoneLike(String value) {
+            addCriterion("addContactPhone like", value, "addContactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactPhoneNotLike(String value) {
+            addCriterion("addContactPhone not like", value, "addContactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactPhoneIn(List<String> values) {
+            addCriterion("addContactPhone in", values, "addContactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactPhoneNotIn(List<String> values) {
+            addCriterion("addContactPhone not in", values, "addContactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactPhoneBetween(String value1, String value2) {
+            addCriterion("addContactPhone between", value1, value2, "addContactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactPhoneNotBetween(String value1, String value2) {
+            addCriterion("addContactPhone not between", value1, value2, "addContactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameIsNull() {
+            addCriterion("addContactName is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameIsNotNull() {
+            addCriterion("addContactName is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameEqualTo(String value) {
+            addCriterion("addContactName =", value, "addContactName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameNotEqualTo(String value) {
+            addCriterion("addContactName <>", value, "addContactName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameGreaterThan(String value) {
+            addCriterion("addContactName >", value, "addContactName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameGreaterThanOrEqualTo(String value) {
+            addCriterion("addContactName >=", value, "addContactName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameLessThan(String value) {
+            addCriterion("addContactName <", value, "addContactName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameLessThanOrEqualTo(String value) {
+            addCriterion("addContactName <=", value, "addContactName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameLike(String value) {
+            addCriterion("addContactName like", value, "addContactName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameNotLike(String value) {
+            addCriterion("addContactName not like", value, "addContactName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameIn(List<String> values) {
+            addCriterion("addContactName in", values, "addContactName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameNotIn(List<String> values) {
+            addCriterion("addContactName not in", values, "addContactName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameBetween(String value1, String value2) {
+            addCriterion("addContactName between", value1, value2, "addContactName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddContactNameNotBetween(String value1, String value2) {
+            addCriterion("addContactName not between", value1, value2, "addContactName");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

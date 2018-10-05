@@ -57,11 +57,11 @@
     </li>
     
     <li><input name="password" type="text" class="loginpwd" /></li>
-      
     <li>
                      管 理 员:&nbsp;&nbsp;<input type="radio" name="loginType" id="loginType" value="admin" style="position: relative;top: 2px"/>&nbsp;&nbsp;&nbsp;&nbsp;
 		卖 家:&nbsp;&nbsp;<input type="radio" name="loginType" id="loginType1" value="seller" style="position: relative;top: 2px"/>
     </li>
+   
     <li><input name="" type="submit" class="loginbtn" value="登录" /><label>
     <input name="remember" type="checkbox"/>记住密码</label><label><a href="#">忘记密码？</a></label></li>
     </ul>

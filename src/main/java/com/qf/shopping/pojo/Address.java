@@ -5,6 +5,10 @@ public class Address {
 
     private String addDetail;
 
+    private String addContactPhone;
+
+    private String addContactName;
+
     public Integer getAddId() {
         return addId;
     }
@@ -19,5 +23,21 @@ public class Address {
 
     public void setAddDetail(String addDetail) {
         this.addDetail = addDetail == null ? null : addDetail.trim();
+    }
+
+    public String getAddContactPhone() {
+        return addContactPhone;
+    }
+
+    public void setAddContactPhone(String addContactPhone) {
+        this.addContactPhone = addContactPhone == null ? null : addContactPhone.trim();
+    }
+
+    public String getAddContactName() {
+        return addContactName;
+    }
+
+    public void setAddContactName(String addContactName) {
+        this.addContactName = addContactName == null ? null : addContactName.trim();
     }
 }

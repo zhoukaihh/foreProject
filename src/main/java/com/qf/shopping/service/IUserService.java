@@ -21,7 +21,7 @@ public interface IUserService {
      */
 	List<UserDto> findUserAll();
 
-	UserDto authenticate(HttpServletRequest req,UserDto user,String loginType);
+	UserDto authenticate(HttpServletRequest req,UserDto user,String loginType ,Model model);
 
 	void create(UserDto dto, String roleName);
 

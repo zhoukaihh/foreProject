@@ -81,7 +81,8 @@
 												订单编号：<a href="javascript:;">${order.orderNum}</a>
 												
 											</div>
-											<span>成交时间：<fmt:formatDate value="${order.orderTime}" pattern="yyyy-MM-dd HH:mm:ss"/> </span>
+											
+											<span>成交时间：${order.orderTime}</span>
 										</div>
 										<div class="order-content">
 											<div class="order-left">

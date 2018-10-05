@@ -20,13 +20,15 @@ public class OrderItem {
     private String itemTotal;
 
     private Integer orderId;
+
+    private String _version;
     
     private Ware ware;
     
     private Order order;
-    
-    
 
+    
+    
     public Ware getWare() {
 		return ware;
 	}
@@ -121,5 +123,13 @@ public class OrderItem {
 
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
+    }
+
+    public String get_version() {
+        return _version;
+    }
+
+    public void set_version(String _version) {
+        this._version = _version == null ? null : _version.trim();
     }
 }

@@ -1,7 +1,6 @@
 package com.qf.shopping.dto;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.qf.shopping.pojo.Order;
@@ -16,7 +15,7 @@ public class OrderDto {
 
 	    private String state;
 
-	    private Date orderTime;
+	    private String orderTime;
 
 	    private Float orderTotalMoney;
 
@@ -92,11 +91,11 @@ public class OrderDto {
 			this.state = state;
 		}
 
-		public Date getOrderTime() {
+		public String getOrderTime() {
 			return orderTime;
 		}
 
-		public void setOrderTime(Date orderTime) {
+		public void setOrderTime(String orderTime) {
 			this.orderTime = orderTime;
 		}
 

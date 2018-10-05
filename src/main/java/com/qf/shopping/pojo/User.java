@@ -25,6 +25,7 @@ public class User {
     
     private List<Role> roles = new ArrayList<Role>();
     
+    private List<Address> Adds = new ArrayList<Address>();
     
     public User() {
 	}
@@ -38,10 +39,18 @@ public class User {
     	this.password=dto.getPassword();
     	this.state=dto.getState();
     	this.telNum=dto.getTelNum();
-    			
-    	
   	}
     
+    
+    
+	public List<Address> getAdds() {
+		return Adds;
+	}
+
+	public void setAdds(List<Address> adds) {
+		Adds = adds;
+	}
+
 	public List<Role> getRoles() {
 		return roles;
 	}

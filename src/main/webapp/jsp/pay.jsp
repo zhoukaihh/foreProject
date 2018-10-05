@@ -81,6 +81,7 @@
 			}
 			
 			$(function(){
+				/* 收货地址的每一个点击事件 */
 				$("ul[class='addressChoose'] li").each(function(){
 						$(this).unbind();
 						$(this).click(function(){
@@ -123,7 +124,7 @@
 						})
 					})
 					
-				
+				/* 提交订单的点击事件 */
 				$("#go").click(function(){
 					//将订单收货人，电话和收货地址加入form表达中
 				    //判断用户是否已经选择了快递方式和付款方式
@@ -318,82 +319,6 @@
 			<div class="concent">
 				<!--地址 -->
 				<div class="paycont">
-			<%-- 		<div class="address">
-						<!-- <h3>确认收货地址 </h3>
-						<div class="control">
-							<div class="tc-btn createAddr theme-login am-btn am-btn-danger"><a href="addAddress.jsp" style="color: white;">使用新地址</a></div>
-						</div> -->
-						<div class="clear"></div>
-						<ul class="addressChoose">
-							
-								<!-- 默认地址：class="user-addresslist defaultAddr" -->
-									<li 
-									<c:if test="${address.isdefault eq '是'}">class="user-addresslist defaultAddr"</c:if>
-									<c:if test="${address.isdefault eq '否'}">class="user-addresslist "</c:if>
-									>
-									  <li class="user-addresslist">
-										<div class="address-left">
-											<div class="user DefaultAddr">
-												 <span class="buy-address-detail"></span>
-		                  						 <span class="buy-user">${address.addContactName}</span>
-												 <span class="buy-phone">${address.addContactPhone}</span>
-											</div>
-												
-											<div class="default-address DefaultAddr">
-												<span class="buy-line-title buy-line-title-type">收货地址：</span>
-												<span class="buy--address-detail">${address.address}</span>
-											</div>
-												<ins class="deftip">默认地址</ins>
-										</div>
-								</li>
-								<li class="user-addresslist">
-										<div class="address-left">
-											<div class="user DefaultAddr">
-												 <span class="buy-address-detail"></span>
-		                  						 <span class="buy-user">${address.addContactName}</span>
-												 <span class="buy-phone">${address.addContactPhone}</span>
-											</div>
-												
-											<div class="default-address DefaultAddr">
-												<span class="buy-line-title buy-line-title-type">收货地址：</span>
-												<span class="buy--address-detail">${address.address}</span>
-											</div>
-												<ins class="deftip">默认地址</ins>
-										</div>
-								</li>
-								<li class="user-addresslist">
-										<div class="address-left">
-											<div class="user DefaultAddr">
-												 <span class="buy-address-detail"></span>
-		                  						 <span class="buy-user">${address.addContactName}</span>
-												 <span class="buy-phone">${address.addContactPhone}</span>
-											</div>
-												
-											<div class="default-address DefaultAddr">
-												<span class="buy-line-title buy-line-title-type">收货地址：</span>
-												<span class="buy--address-detail">${address.address}</span>
-											</div>
-												<ins class="deftip">默认地址</ins>
-										</div>
-								</li>
-								<li class="user-addresslist">
-										<div class="address-left">
-											<div class="user DefaultAddr">
-												 <span class="buy-address-detail"></span>
-		                  						 <span class="buy-user">${address.addContactName}</span>
-												 <span class="buy-phone">${address.addContactPhone}</span>
-											</div>
-												
-											<div class="default-address DefaultAddr">
-												<span class="buy-line-title buy-line-title-type">收货地址：</span>
-												<span class="buy--address-detail">${address.address}</span>
-											</div>
-												<ins class="deftip">默认地址</ins>
-										</div>
-								</li>
-						</ul>
-						<div class="clear"></div>
-					</div> --%>
 					
 					<!-- 自己写的地址栏 我的地址-->
 					<div class="div-showAddress" style="align-content:center; width:1000px; height:111px;">
@@ -401,7 +326,7 @@
 					                <span class="addresstitle">收货地址：</span>
 					                 
 					                <div class="showAddressInfo">
-					                       <p class="addressinfo ">${defaultAddress.address}</p>
+					                       <p class="addressinfo ">${defaultAddress.addDetail}</p>
 					                       <p class="addressinfoper">${defaultAddress.addContactPhone}</p>
 					                       <p class="addressinfoname">${defaultAddress.addContactName}</p>
 					                </div>
@@ -419,7 +344,7 @@
 					                   <span class="addresstitle">收货地址：</span>
 					                
 					                  <div class="showAddressInfo">
-					                  <p class="addressinfo ">${otherAdd.address}</p>
+					                  <p class="addressinfo ">${otherAdd.addDetail}</p>
 					                 <%--  <p class="addressinfoper">${otherAdd.addContactPhone}&nbsp;&nbsp;&nbsp;&nbsp;${otherAdd.addContactName}</p> --%>
 					               <p class="addressinfoper">${otherAdd.addContactPhone}</p>
 					               <p class="addressinfoname">${otherAdd.addContactName}</p>
@@ -456,7 +381,7 @@
 					                   <span class="addresstitle">收货地址：</span>
 					             
 					                   <div class="showAddressInfo">
-					                    <p class="addressinfo ">${otherAdd.address}</p> 
+					                    <p class="addressinfo ">${otherAdd.addDetail}</p> 
 					                   <%--  <p class="addressinfoper">${otherAdd.addContactPhone}&nbsp;&nbsp;&nbsp;&nbsp;${otherAdd.addContactName}</p> --%>
 					               <p class="addressinfoper">${otherAdd.addContactPhone}</p>
 					               <p class="addressinfoname">${otherAdd.addContactName}</p>
@@ -471,10 +396,6 @@
 					
 					</c:if>
 					<div class="clear"></div>
-					
-					
-					
-					
 					
 					<!--物流 -->
 					<div class="logistics">
@@ -527,33 +448,31 @@
 							</div>
 							<div class="clear"></div>
 							
-						<!-- 购物车 -->
+						<!--  -->
 						<c:set var="goodAllSize" scope="page" value="${0}"></c:set>
 						<c:set var="allPrice" scope="page" value="${0}"></c:set>
 						<!-- 区分每个购物项的辅助变量 -->
 						<c:set var="itemNum" scope="page" value="${0}"></c:set>
-						<c:forEach items="${shoppingCar.items}" var="shopCartItem" >
+						<c:forEach items="${shopCarSeleced.items}" var="shopCartItem" >
 						     <c:set var="allPrice" scope="page" value="${(allPrice+shopCartItem.money)}"></c:set>
 							 <c:set var="goodAllSize" scope="page" value="${(goodAllSize+shopCartItem.count)}"></c:set>
 							 <c:set var="itemNum" scope="page" value="${(itemNum+1)}"></c:set>
 							<!-- 一个ul是一个购物项 -->
 							<ul id="item${itemNum}" style="background-color: white;border:1px solid rgb(287, 236, 120);border-radius:6px;"class="item-content clearfix">
 								<li class="td td-item">	
-								 		  
-								  
 									<div class="item-pic" style="position:relative; top:-4px;left:4px;">							
 										<a target="_blank" class="J_MakePoint"
 											data-point="tbcart.8.12"> <img
-											src="${pageContext.request.contextPath}/images/${shopCartItem.good.gPhoto}"
+											src="${pageContext.request.contextPath}/shoppingImages/${shopCartItem.good.goodImage}"
 											style="width: 80px; height: 80px" class="itempic J_ItemImg"></a>
 									</div>
 									<div class="item-info">
 										<div class="item-basic-info" style="margin-top: -7px;">
-											<a href="${pageContext.request.contextPath}/goods/showGoodById.action?gId=${shopCartItem.good.gId}" target="_blank" title=""
+											<a href="${pageContext.request.contextPath}/goods/showGoodById?goodId=${shopCartItem.good.goodId}" target="_blank" title=""
 												class="item-title J_MakePoint" data-point="tbcart.8.11">
-								                <span style="position:relative; top:22px; left:12px; color:#AAAAAA;font-size: 22px;">${shopCartItem.good.gName}</span></a>
+								                <span style="position:relative; top:22px; left:12px; color:#AAAAAA;font-size: 22px;">${shopCartItem.good.goodName}</span></a>
 												<br/>
-												<span style="position:relative; top:32px; left:12px; color:#AAAAAA">${shopCartItem.good.gDes}</span>
+												<span style="position:relative; top:32px; left:12px; color:#AAAAAA">${shopCartItem.good.goodDes}</span>
 										</div>
 									</div>
 								</li>
@@ -561,12 +480,13 @@
 								<li class="td td-price">
 									<div class="item-price price-promo-promo">
 										<div class="price-content" style="position: relative; top:25px; left:6px;">
+													<!--  
 													<div class="price-line">
-														<em class="price-original">${shopCartItem.good.gyPrice}</em>
+														<em class="price-original">${shopCartItem.good.goodPrice}</em>
 													</div>
-														
+													-->	
 													<div class="price-line">
-														<em id="gcPrice${itemNum}" class="J_Price price-now" tabindex="0">${shopCartItem.good.gcPrice}</em>
+														<em id="gcPrice${itemNum}" class="J_Price price-now" tabindex="0">${shopCartItem.good.goodPrice}</em>
 													</div>
 										</div>
 									</div>
@@ -593,94 +513,17 @@
 												</div>
 											</li>
 							    <!-- 作为参数传递给外界 -->
-							    <input type="hidden" name="gId" value="${shopCartItem.good.gId}"/>
+							    <input type="hidden" name="goodId" value="${shopCartItem.good.goodId}"/>
 							    
 							    <!--点击提交时，将所选的商品id和其数量， 作为参数传给后端 -->
-							    <input id="payId${itemNum}" type="hidden" name="gIdNoChoice" value="${shopCartItem.good.gId}"/>
+							    <input id="payId${itemNum}" type="hidden" name="goodIdNoChoice" value="${shopCartItem.good.goodId}"/>
 							    <input id="payCount${itemNum}" type="hidden" name="countNoChoice" value="0"/>
 							    
 							</ul>
-							
-							   
-							    
-							    
 							</c:forEach>
-							
-							
-							
-							
-					<%-- 		
-					<c:forEach items="${shoppingCar.items}" var="shopCartItem">
-							<!-- 购物车 -->
-							<tr class="item-list">
-								<div class="bundle  bundle-last">
-
-									<div class="bundle-main">
-										<ul style="background-color: white;border:1px solid rgb(287, 236, 120);border-radius:6px;" class="item-content clearfix">
-											<div class="pay-phone">
-												<li class="td td-item">
-													<div class="item-pic">
-														<a href="#" class="J_MakePoint">
-															<img src="${pageContext.request.contextPath}/images/${shopCartItem.good.gPhoto}" style="width: 80px; height: 80px" class="itempic J_ItemImg"></a>
-													</div>
-													<div class="item-info">
-														<div class="item-basic-info">
-															<a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">${shopCartItem.good.gDes}</a>
-														</div>
-													</div>
-												</li>						
-												<li class="td td-price">
-													<div class="item-price price-promo-promo">
-														<div class="price-content">
-															<div class="price-line">
-																<em class="price-original">${shopCartItem.good.gyPrice}</em>
-															</div>
-															<div class="price-line"> 
-																<em class="J_Price price-now" id="priceNow" tabindex="0">${shopCartItem.good.gcPrice}</em>
-															</div>
-														</div>
-													</div>
-												</li>
-											</div>
-											<li class="td td-amount">
-												<div class="amount-wrapper ">
-													<div class="item-amount ">
-														<span class="phone-title">${shopCartItem.count}</span>
-														<div class="sl">
-															<input class="min am-btn" name="" type="button" value="-" id="jian" onclick="jian(${shopCartItem.good.gId})"/> 
-															<input class="text_box" id="count_${shopCartItem.good.gId}" type="text" value="${shopCartItem.count}" 
-													          style="width: 30px; text-align: center;"/> 
-													          <input class="add am-btn" name="" type="button" value="+"  id="jia" onclick="jia(${shopCartItem.good.gId})"/>
-														 <input type="hidden"  value="goodsId">
-														</div>
-													</div>
-												</div>
-											</li>
-											<li class="td td-sum">
-												<div class="td-inner">
-													<em tabindex="0" class="J_ItemSum number" id="singlePrice_${shopCartItem.good.gId}">${shopCartItem.money}</em>
-												</div>
-											</li>
-											<li class="td td-oplist">
-												<div class="td-inner">
-													<span class="phone-title">配送方式</span>
-													<div class="pay-logis">
-														快递<b class="sys_item_freprice">包邮</b>
-													</div>
-												</div>
-											</li>
-
-										</ul>
-										<div class="clear"></div>
-
-									</div>
-							</tr>
-							
-							</c:forEach> --%>
 							
 							<div class="clear"></div>
 							</div>
-
 
 							<!--信息 -->
 							<div style="" class="order-go clearfix">
@@ -688,7 +531,7 @@
 									<div style="width:300px;" class="box">
 										<div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
 											<span class="price g_price ">
-                                    <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">${shoppingCar.prices}</em>
+                                    <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">${shopCarSeleced.prices}</em>
 											</span>
 										</div>
 
@@ -697,7 +540,7 @@
 											<p class="buy-footer-address">
 												<span  class="buy-line-title buy-line-title-type">寄送至：</span>
 												<span class="buy--address-detail" id="send">
-								  						${defaultAddress.address}
+								  						${defaultAddress.addDetail}
 												</span>
 											</p>
 											<p class="buy-footer-address">
@@ -717,13 +560,13 @@
 										</div>
 										
 										<!-- 存放了订单信息的form表达 -->
-										<form action="${pageContext.request.contextPath}/pay/makeOrder.action" method="post" id="form">
-											<input type="hidden" name="oShPeople" value="" id="buy_user"/>
-											<input type="hidden" name="oShTelNum" value="" id="phone"/>
-											<input type="hidden" name="oShAddress" value="" id="address"/>
-											<input type="hidden" name="oSendType" value="" id="express"/>
-											<input type="hidden" name="oPayType" value="" id="paytype"/>
-											 <c:forEach items="${payId}" var="onePayId">
+										<form action="${pageContext.request.contextPath}/orders/makeOrder" method="post" id="form">
+											<input type="hidden" name="orderShPeople" value="" id="buy_user"/>
+											<input type="hidden" name="oderShTel" value="" id="phone"/>
+											<input type="hidden" name="orderShAddress" value="" id="address"/>
+											<input type="hidden" name="orderSendType" value="" id="express"/>
+											<input type="hidden" name="orderPayType" value="" id="paytype"/>
+											<c:forEach items="${payId}" var="onePayId">
 							                  <input type="hidden"  name="payId" value="${onePayId}"/>
 							                  </c:forEach>
 							                  <c:forEach items="${payCount}" var="oneCount">
@@ -780,7 +623,7 @@
 				<hr/>
 
 				<div class="am-u-md-12">	
-					<form id="editaddressform" method="post" action="${pageContext.request.contextPath}/address/updateAddress.action" class="am-form am-form-horizontal">
+					<form id="editaddressform" method="post" action="${pageContext.request.contextPath}/address/updateAddress" class="am-form am-form-horizontal">
 
 						<div class="am-form-group">
 							<label for="user-name"  class="am-form-label">收货人</label>
@@ -795,24 +638,6 @@
 								<input id="userphone" name="addContactPhone" placeholder="手机号必填" type="email">
 							</div>
 						</div>
-<!-- 
-						<div class="am-form-group">
-							<label for="user-phone" class="am-form-label">所在地</label>
-							<div class="am-form-content address">
-								<select data-am-selected>
-									<option value="a">浙江省</option>
-									<option value="b">湖北省</option>
-								</select>
-								<select data-am-selected>
-									<option value="a">温州市</option>
-									<option value="b">武汉市</option>
-								</select>
-								<select data-am-selected>
-									<option value="a">瑞安区</option>
-									<option value="b">洪山区</option>
-								</select>
-							</div>
-						</div> -->
 						
 						 <div id="citychonce" style="width:1000px;height: 300px; position: relative; top:0px; left: 48px;">
                                           <!--注意选DOM结构不要随便更改，可能会导致出错-->
@@ -831,8 +656,6 @@
 								<br />             
                          </div>
                          
-                         
-
 						<div class="am-form-group">
 							<label for="user-intro" class="am-form-label">详细地址</label>
 							<div class="am-form-content">
@@ -859,10 +682,7 @@
 						</div>
 					</form>
 				  </div>
-
 			      </div>
-			
-			
 			</div>
 			
 			<!-- 遮罩层结束 -->
@@ -968,11 +788,6 @@
  		 }  
       });
       
-    /*  function enter(item){
-    	 alert(item);
-    	 
-     } */
-     
      function changeDefaultAdd(item,addId){
          //Ajax请求后台修改默认地址
          $.get("${pageContext.request.contextPath}/address/changeDefaultAddress.action?addId="+addId,function(data,state){
@@ -1081,16 +896,11 @@
      }
      
      </script>
-
-     
-     
-     
-     
+	
     <script src="${pageContext.request.contextPath}/myjs/jquery-1.9.1.js"></script>
     <script src="${pageContext.request.contextPath}/myjs/location.js"></script>
     <script>
     //如果初始化为其他地区的，需要注意选择器的修改，传递不同的proid（省id），cityid：(市id) areaid：（县id），省市对应ID在location.js里面有定义，县id从京东动态加载
     $('ul.listArea').Address({ proid: 1152, cityid: 1153, areaid: 1154 });//初始化Tab中的地址
-    /* $(".store-selector").find(".text div").html("山东济南");//初始化文本框显示的地址 */
     </script>
 </html>

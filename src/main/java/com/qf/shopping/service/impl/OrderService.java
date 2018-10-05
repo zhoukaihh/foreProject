@@ -65,7 +65,7 @@ public class OrderService implements IOrderService {
 		List<Order> pos1 = new ArrayList<Order>();
 		
 		for (Order po : pos) {
-			 User user = userMapper.selectByPrimaryKey(po.getUsreId());
+			User user = userMapper.selectByPrimaryKey(po.getUsreId());
 			po.setUser(user);
 			
 			OrderItemExample oie = new OrderItemExample();
@@ -106,6 +106,56 @@ public class OrderService implements IOrderService {
 		po.setOderShTel(dto.getOderShTel());
 		
 		oMapper.updateByPrimaryKeySelective(po);
+	}
+
+	/**
+	 * 保存订单
+	 */
+	@Override
+	public void saveOrder(Order order,String orderNum) {
+		Order po = new Order();
+		po.setOrderShPeople(order.getOrderShPeople());
+		po.setOrderSendType(order.getOrderSendType());
+		po.setOrderPayType(order.getOrderPayType());
+		po.setOderShTel(order.getOderShTel());
+		po.setOrderShAddress(order.getOrderShAddress());
+		po.setOrderNum(orderNum);
+		
+		oMapper.insert(po);
+	}
+
+	@Override
+	public List<Order> findByNum(String orderNum) {
+		OrderExample oex = new OrderExample();
+		oex.createCriteria().andOrderNumEqualTo(orderNum);
+		List<Order> selectByExample = oMapper.selectByExample(oex);
+		return selectByExample;
+	}
+
+	@Override
+	public void update(Order order1) {
+		oMapper.updateByPrimaryKey(order1);
+	}
+
+	@Override
+	public void update(OrderDto order) {
+		Order po = new Order();
+		po.setFlag(order.getFlag());
+		po.setOderShTel(order.getOderShTel());
+		po.setOrderId(order.getOrderId());
+		po.setOrderItems(order.getOrderItems());
+		po.setOrderNum(order.getOrderNum());
+		po.setOrderPayType(order.getOrderPayType());
+		po.setOrderSendType(order.getOrderSendType());
+		po.setOrderShAddress(order.getOrderShAddress());
+		po.setOrderShPeople(order.getOrderShPeople());
+		po.setOrderTime(order.getOrderTime());
+		po.setOrderTotalMoney(order.getOrderTotalMoney());
+		po.setState(order.getState());
+		po.setUser(order.getUser());
+		po.setUsreId(order.getUsreId());
+		
+		oMapper.updateByPrimaryKey(po);
 	}
 
 }

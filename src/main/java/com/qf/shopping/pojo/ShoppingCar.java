@@ -31,22 +31,32 @@ public class ShoppingCar {
 
 	public void setItems(List<ShoppingCarItem> items) {
 		this.items = items;
-		Integer counts = Integer.valueOf(0);
-		Float prices = Float.valueOf(0.0F);
-		for (ShoppingCarItem item : items) {
-			counts += item.getCount();
-			prices += item.getMoney();
-		}
+		
 	}
 
-	
 	public Integer getCounts() {
 		return counts;
 	}
 
+
+
+	public void setCounts(Integer counts) {
+		this.counts = counts;
+	}
+
+
+
 	public Float getPrices() {
 		return prices;
 	}
+
+
+
+	public void setPrices(Float prices) {
+		this.prices = prices;
+	}
+
+
 
 	@Override
 	public String toString() {
